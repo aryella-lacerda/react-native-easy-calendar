@@ -1,25 +1,35 @@
-import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import EasyCalendar from 'react-native-easy-calendar';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+import Basic from './Calendars/Basic';
+import Locales from './Calendars/Locales';
+import DisabledDates from './Calendars/DisabledDates';
+import MinMaxDates from './Calendars/MinMaxDates';
+import ForbidYearView from './Calendars/ForbidYearView';
+import CustomComponents from './Calendars/CustomComponents';
 
-  React.useEffect(() => {
-    EasyCalendar.multiply(3, 7).then(setResult);
-  }, []);
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
+    <View testID={'App'}>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView testID={'scroll-view'}>
+          <Basic />
+          <Locales />
+          <DisabledDates />
+          <MinMaxDates />
+          <ForbidYearView />
+          <CustomComponents />
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  safeArea: {
+    height: '100%',
   },
 });
+
+export default App;
