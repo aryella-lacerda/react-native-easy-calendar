@@ -13,7 +13,7 @@ export interface Props {
 
 const Month: React.FC<Props> = ({ date, onPress, isSelected, isDisabled }) => {
   const theme = React.useContext<Theme>(ThemeContext);
-  const months = date.localeData().monthsShort();
+  const months: string[] = date.localeData().monthsShort();
   const index = date.month();
 
   return (
