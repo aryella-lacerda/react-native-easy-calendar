@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { ThemeContext } from '../Contexts';
 import { DefaultTheme } from '../Themes';
 import { DefaultLocale } from '../Locales';
-import { VIEW } from '../Calendars/BaseCalendar';
+import { VIEW } from '../Constants';
 
 import Title, { Props } from './Title';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, Dimensions } from 'react-native';
-import { DateSelectionCalendar } from 'react-native-easy-calendar';
+import { DateSelectionCalendar, VIEW } from 'react-native-easy-calendar';
 import Wrapper from '../Wrapper';
 
 const { width } = Dimensions.get('screen');
@@ -16,9 +16,13 @@ const CustomComponents = () => {
       <DateSelectionCalendar
         onSelectDate={setSelectedDate}
         selectedDate={selectedDate}
-        TitleComponent={({ date, onPress, isDisabled }) => (
+        TitleComponent={({ date, onPress, isDisabled, activeView }) => (
           <TouchableOpacity onPress={onPress} disabled={isDisabled}>
-            <Text>{`${date.format('YYYY MMMM DD')}`}</Text>
+            <Text>
+              {activeView === VIEW.MONTH
+                ? `${date.format('MMMM YYYY')}`
+                : `${date.format('YYYY')}`}
+            </Text>
           </TouchableOpacity>
         )}
         ArrowComponent={({ direction, isDisabled, onPress }) => (

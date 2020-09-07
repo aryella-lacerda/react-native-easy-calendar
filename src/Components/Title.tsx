@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Dayjs } from 'dayjs';
 import { Text, TouchableOpacity } from 'react-native';
-import { VIEW } from '../Calendars/BaseCalendar';
+import { VIEW } from '../Constants';
 import type { Theme } from '../Entities';
 import { ThemeContext } from '../Contexts';
 

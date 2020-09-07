@@ -9,6 +9,7 @@ import utc from 'dayjs/plugin/utc';
 import { getSurroundingTimeUnits } from '../Utils';
 import { useSurroundingTimeUnits } from '../Hooks';
 import { ThemeContext, LocaleContext } from '../Contexts';
+import { VIEW } from '../Constants';
 
 import {
   Months,
@@ -31,11 +32,6 @@ import type {
 dayjs.extend(localeData);
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
-
-export enum VIEW {
-  YEAR,
-  MONTH,
-}
 
 export interface Props {
   ArrowComponent?: ArrowComponentType;
