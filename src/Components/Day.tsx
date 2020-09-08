@@ -9,7 +9,7 @@ import { ThemeContext } from '../Contexts';
 
 interface OtherProps {
   date: Dayjs | null;
-  onPress: (date: string) => void;
+  onPress: () => void;
   isStartOfWeek?: boolean;
   isEndOfWeek?: boolean;
   isStartOfMonth?: boolean;
@@ -37,12 +37,6 @@ const Day: React.FC<Props> = ({
 }) => {
   const theme = React.useContext<Theme>(ThemeContext);
   // const ref = React.useRef<Animatable.Text | null>(null);
-  const _onPress = () => {
-    if (date) {
-      onPress(date.local().format());
-    }
-  };
-
   const isHightlighted = isSelected || isPeriodEnd || isPeriodStart;
 
   // ref.current?.bounce?.(800);
@@ -55,7 +49,7 @@ const Day: React.FC<Props> = ({
         testID={'extra-day-container'}
         accessibilityLabel={date ? `${date.format('LL')}` : ''}
         accessibilityState={{ disabled: true, selected: false }}
-        onPress={_onPress}
+        onPress={onPress}
         style={[theme.normalDayContainer, theme.extraDayContainer]}>
         <Text testID={'extra-day-text'} style={[theme.normalDayText, theme.extraDayText]}>
           {showExtraDates && date?.date()}
@@ -73,7 +67,7 @@ const Day: React.FC<Props> = ({
         selected: !!(isSelected || isPeriod),
       }}
       disabled={isDisabled || isExtraDay}
-      onPress={_onPress}
+      onPress={onPress}
       style={[
         theme.normalDayContainer,
         isPeriod && theme.periodDayContainer,
@@ -109,8 +103,7 @@ const Day: React.FC<Props> = ({
             isEndOfMonth && theme.endOfMonthDayText,
             isExtraDay && theme.extraDayText,
           ]}>
-          {isExtraDay && showExtraDates && date?.date()}
-          {!isExtraDay && date?.date()}
+          {date?.date()}
         </Text>
       </View>
     </TouchableOpacity>

@@ -70,7 +70,7 @@ const CustomComponents = () => {
         )}
         DayComponent={({ date, onPress, isDisabled }) => (
           <TouchableOpacity
-            onPress={() => onPress('')}
+            onPress={onPress}
             disabled={isDisabled}
             style={{
               height: 32,

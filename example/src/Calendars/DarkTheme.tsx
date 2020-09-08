@@ -8,7 +8,7 @@ const DarkThemeCalendar = () => {
   return (
     <DateSelectionCalendar
       showExtraDates={true}
-      testID={'basic-calendar'}
+      testID={'dark-theme-calendar'}
       onSelectDate={setSelectedDate}
       selectedDate={selectedDate}
       theme={theme}
