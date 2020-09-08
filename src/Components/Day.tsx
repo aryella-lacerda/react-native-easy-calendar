@@ -1,16 +1,11 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-
 import { Text, TouchableOpacity, View } from 'react-native';
 // import * as Animatable from 'react-native-animatable';
 
 // import { checkChangedProps } from '../Utils';
 import type { DateProperties, Theme } from '../Entities';
 import { ThemeContext } from '../Contexts';
-
-dayjs.extend(utc);
 
 interface OtherProps {
   date: Dayjs | null;

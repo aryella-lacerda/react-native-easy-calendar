@@ -1,5 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
 import type { ReactTestInstance } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react-native';
 
@@ -8,6 +10,8 @@ import { DefaultTheme } from '../Themes';
 import type { Theme } from '../Entities';
 
 import Days, { Props } from './Days';
+
+dayjs.extend(localizedFormat);
 
 // import { DayComponentType } from '../Entities';
 

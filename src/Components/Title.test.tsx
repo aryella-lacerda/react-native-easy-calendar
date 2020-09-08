@@ -1,5 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
 import type { ReactTestInstance } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react-native';
 
@@ -9,6 +11,8 @@ import { DefaultLocale } from '../Locales';
 import { VIEW } from '../Constants';
 
 import Title, { Props } from './Title';
+
+dayjs.extend(utc);
 
 test('Title render without error', () => {
   const title = new TitlePage({});

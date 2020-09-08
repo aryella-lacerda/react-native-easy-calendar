@@ -1,11 +1,15 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
 import type { ReactTestInstance } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react-native';
 import { ThemeContext } from '../Contexts';
 import { DefaultTheme } from '../Themes';
 
 import Day, { Props } from './Day';
+
+dayjs.extend(utc);
 
 test('Month renders without error', () => {
   const day = new DayPage({});
