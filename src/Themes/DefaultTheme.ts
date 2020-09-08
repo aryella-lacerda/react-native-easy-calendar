@@ -6,11 +6,13 @@ import type { Theme } from '../Entities';
 const { width } = Dimensions.get('screen');
 const CALENDAR_HEIGHT = 315;
 const HEADER_HEIGHT = 45;
+const DAY_SIZE = 32;
+const DAY_MARGIN_HORIZONTAL = (width / 7 - DAY_SIZE) / 2;
 
 const text = StyleSheet.create({
   normal: {
     fontStyle: 'normal',
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontSize: 14,
     lineHeight: 17,
     alignItems: 'center',
@@ -19,7 +21,7 @@ const text = StyleSheet.create({
     color: '#000000',
   },
   disabled: {
-    color: addOpacity('#000000', 0.3),
+    color: '#C9C9CA',
   },
   // Selected or period days
   highlighted: {
@@ -28,14 +30,21 @@ const text = StyleSheet.create({
   title: {
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 16,
+    letterSpacing: 0.2,
+    fontSize: 14,
+    color: '#333',
   },
-  subtitle: {
+  weekday: {
     width: width / 7,
     textAlign: 'center',
-    fontSize: 11,
+    textTransform: 'uppercase',
+    fontSize: 9,
     fontWeight: 'bold',
-    color: '#777',
+    color: '#555',
+  },
+  selected: {
+    color: '#FFFFFF',
+    fontWeight: '700',
   },
 });
 
@@ -68,23 +77,31 @@ const container = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
   },
-  day: {
-    height: 32,
-    width: width / 7,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 4,
-  },
   periodDay: {
     width: '100%',
     backgroundColor: addOpacity('#000000', 0.1),
     borderRadius: 0,
   },
-  selectedDay: {
-    backgroundColor: addOpacity('#000000', 0.1),
-    alignItems: 'center',
+  normalDay: {
+    height: DAY_SIZE,
+    width: DAY_SIZE,
+    marginHorizontal: DAY_MARGIN_HORIZONTAL,
     justifyContent: 'center',
-    borderRadius: 8,
+    alignItems: 'center',
+    marginVertical: 4,
+  },
+  selectedDay: {
+    backgroundColor: '#04997C',
+    borderRadius: DAY_SIZE / 3,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
   periodEnds: {
     borderRadius: 8,
@@ -93,7 +110,8 @@ const container = StyleSheet.create({
 
 const arrow = StyleSheet.create({
   normal: {
-    tintColor: 'pink',
+    tintColor: '#04997C',
+    aspectRatio: 1,
   },
   disabled: {
     tintColor: 'grey',
@@ -116,10 +134,10 @@ const DefaultTheme: Theme = StyleSheet.create({
   titleContainer: {},
   titleText: text.title,
   weekdaysContainer: container.weekdays,
-  weekdayText: text.subtitle,
+  weekdayText: text.weekday,
   daysContainer: container.days,
   monthsContainer: container.months,
-  normalDayContainer: container.day,
+  normalDayContainer: container.normalDay,
   disabledDayContainer: {},
   selectedDayContainer: container.selectedDay,
   extraDayContainer: {},
@@ -133,7 +151,7 @@ const DefaultTheme: Theme = StyleSheet.create({
   dayHighlightContainer: {},
   normalDayText: text.normal,
   disabledDayText: text.disabled,
-  selectedDayText: text.highlighted,
+  selectedDayText: text.selected,
   extraDayText: text.disabled,
   periodDayText: text.highlighted,
   periodStartDayText: text.highlighted,
