@@ -1,5 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import Colors from '../../src/Themes/Colors';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Props {
@@ -31,7 +32,7 @@ const Wrapper = ({
       </Text>
       {selectedDate && (
         <View style={styles.selectedContainer}>
-          <Text style={styles.selected} testID={'selected-date'}>
+          <Text style={styles.selectedText} testID={'selected-date'}>
             {`${dayjs(selectedDate).format('MMMM D, YYYY')}`}
           </Text>
         </View>
@@ -49,32 +50,33 @@ const Wrapper = ({
   );
 };
 
-const getStyles = (color: 'light' | 'dark') =>
+const getStyles = (code: 'light' | 'dark') =>
   StyleSheet.create({
     container: {
-      backgroundColor: color === 'light' ? '#FFF' : '#F0F0F0',
+      backgroundColor: Colors[code].base,
     },
     title: {
       fontSize: 16,
       fontWeight: '600',
       paddingVertical: 12,
-      backgroundColor: color === 'light' ? '#FFF' : '#F0F0F0',
+      backgroundColor: Colors[code].base,
       textAlign: 'center',
+      color: Colors[code].baseText,
     },
     selectedContainer: {
-      backgroundColor: '#76b374',
+      backgroundColor: Colors[code].primary,
       width: 200,
       paddingVertical: 10,
       borderRadius: 6,
       marginVertical: 8,
       alignSelf: 'center',
     },
-    selected: {
-      color: '#FFF',
+    selectedText: {
+      color: Colors[code].primaryText,
       textAlign: 'center',
     },
     button: {
-      backgroundColor: '#76b374',
+      backgroundColor: Colors[code].primary,
       width: 120,
       paddingVertical: 10,
       alignSelf: 'center',
@@ -90,7 +92,7 @@ const getStyles = (color: 'light' | 'dark') =>
       marginVertical: 8,
     },
     buttonText: {
-      color: '#FFF',
+      color: Colors[code].primaryText,
       textAlign: 'center',
     },
   });

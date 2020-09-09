@@ -7,7 +7,6 @@ import DisabledDates from './Calendars/DisabledDates';
 import MinMaxDates from './Calendars/MinMaxDates';
 import ForbidYearView from './Calendars/ForbidYearView';
 import CustomComponents from './Calendars/CustomComponents';
-import DarkTheme from './Calendars/DarkTheme';
 
 const App = () => {
   return (
@@ -21,7 +20,6 @@ const App = () => {
           <MinMaxDates />
           <ForbidYearView />
           <CustomComponents />
-          <DarkTheme />
         </ScrollView>
       </SafeAreaView>
     </View>

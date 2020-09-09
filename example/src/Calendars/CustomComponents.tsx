@@ -11,7 +11,7 @@ const CustomComponents = () => {
   return (
     <Wrapper
       testID={'custom-components-calendar-wrapper'}
-      color="dark"
+      color="light"
       title={'Custom components'}>
       <DateSelectionCalendar
         onSelectDate={setSelectedDate}

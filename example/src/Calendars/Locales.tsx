@@ -3,7 +3,7 @@ import frenchLocale from 'dayjs/locale/fr';
 import spanishLocale from 'dayjs/locale/es';
 import Wrappper from '../Wrapper';
 
-import { DateSelectionCalendar } from 'react-native-easy-calendar';
+import { DateSelectionCalendar, DarkTheme } from 'react-native-easy-calendar';
 
 const LocalesCalendar = () => {
   const [selectedDate, setSelectedDate] = React.useState('2020-01-01');
@@ -30,6 +30,7 @@ const LocalesCalendar = () => {
         onSelectDate={setSelectedDate}
         selectedDate={selectedDate}
         locale={selectedLocale}
+        theme={DarkTheme}
       />
     </Wrappper>
   );

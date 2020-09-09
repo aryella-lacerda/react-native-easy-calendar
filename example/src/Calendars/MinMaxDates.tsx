@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateSelectionCalendar } from 'react-native-easy-calendar';
+import { DateSelectionCalendar, DarkTheme } from 'react-native-easy-calendar';
 import Wrapper from '../Wrapper';
 
 const MinMaxDates = () => {
@@ -17,6 +17,7 @@ const MinMaxDates = () => {
         maxDate={'2020-04-10'}
         onSelectDate={setSelectedDate}
         selectedDate={selectedDate}
+        theme={DarkTheme}
       />
     </Wrapper>
   );
