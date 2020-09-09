@@ -1,9 +1,11 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { addOpacity } from '../Utils';
-
 import type { Theme } from '../Entities';
+import Colors from './Colors';
 
+const { light } = Colors;
 const { width } = Dimensions.get('screen');
+
 const CALENDAR_HEIGHT = 315;
 const HEADER_HEIGHT = 45;
 const DAY_SIZE = 32;
@@ -18,21 +20,20 @@ const text = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     letterSpacing: 0.03,
-    color: '#000000',
+    color: light.baseText,
   },
   disabled: {
-    color: '#C9C9CA',
+    color: light.disabled,
   },
-  // Selected or period days
   highlighted: {
-    color: '#000000',
+    color: light.baseText,
   },
   title: {
     fontStyle: 'normal',
     fontWeight: 'bold',
     letterSpacing: 0.2,
     fontSize: 14,
-    color: '#333',
+    color: light.baseText,
   },
   weekday: {
     width: width / 7,
@@ -40,10 +41,10 @@ const text = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 9,
     fontWeight: 'bold',
-    color: '#555',
+    color: light.elevation,
   },
   selected: {
-    color: '#FFFFFF',
+    color: light.base,
     fontWeight: '700',
   },
 });
@@ -51,6 +52,7 @@ const text = StyleSheet.create({
 const container = StyleSheet.create({
   calendar: {
     height: CALENDAR_HEIGHT,
+    backgroundColor: light.base,
   },
   header: {
     height: HEADER_HEIGHT,
@@ -79,7 +81,7 @@ const container = StyleSheet.create({
   },
   periodDay: {
     width: '100%',
-    backgroundColor: addOpacity('#000000', 0.1),
+    backgroundColor: addOpacity(light.baseText, 0.1),
     borderRadius: 0,
   },
   normalDay: {
@@ -91,16 +93,15 @@ const container = StyleSheet.create({
     marginVertical: 4,
   },
   selectedDay: {
-    backgroundColor: '#04997C',
+    backgroundColor: light.primary,
     borderRadius: DAY_SIZE / 3,
-    shadowColor: '#000',
+    shadowColor: light.baseText,
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
-
     elevation: 2,
   },
   periodEnds: {
@@ -110,15 +111,15 @@ const container = StyleSheet.create({
 
 const arrow = StyleSheet.create({
   normal: {
-    tintColor: '#04997C',
+    tintColor: light.primary,
     aspectRatio: 1,
   },
   disabled: {
-    tintColor: 'grey',
+    tintColor: light.disabled,
   },
 });
 
-const DefaultTheme: Theme = StyleSheet.create({
+const DefaultTheme: Theme = {
   calendarContainer: container.calendar,
   headerContainer: container.header,
   normalArrowContainer: {},
@@ -160,6 +161,6 @@ const DefaultTheme: Theme = StyleSheet.create({
   endOfWeekDayText: {},
   startOfMonthDayText: {},
   endOfMonthDayText: {},
-});
+};
 
 export default DefaultTheme;

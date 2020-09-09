@@ -1,8 +1,11 @@
 import { Dimensions } from 'react-native';
 import type { Theme } from '../Entities';
 import DefaultTheme from './DefaultTheme';
+import Colors from './Colors';
 
+const { dark } = Colors;
 const { width } = Dimensions.get('screen');
+
 const CALENDAR_HEIGHT = 335;
 const DAY_SIZE = 32;
 const DAY_MARGIN_HORIZONTAL = (width / 7 - DAY_SIZE) / 2;
@@ -10,40 +13,40 @@ const DAY_MARGIN_HORIZONTAL = (width / 7 - DAY_SIZE) / 2;
 const DarkTheme: Theme = {
   ...DefaultTheme,
   calendarContainer: {
-    backgroundColor: '#2d2d2d',
+    backgroundColor: dark.base,
     paddingVertical: 10,
     height: CALENDAR_HEIGHT,
   },
   titleText: {
-    color: '#e6e6e6',
+    color: dark.baseText,
     letterSpacing: 0.8,
     fontSize: 15,
     fontWeight: '600',
   },
   normalDayText: {
-    color: '#e6e6e6',
+    color: dark.baseText,
   },
   normalMonthText: {
     textTransform: 'uppercase',
     fontSize: 12,
     letterSpacing: 1,
-    color: '#e6e6e6',
+    color: dark.baseText,
     alignItems: 'center',
     textAlign: 'center',
     fontWeight: '700',
   },
   selectedMonthText: {
-    color: '#FFC491',
+    color: dark.primary,
   },
   extraDayText: {
-    color: '#7c7c7c',
+    color: dark.disabled,
     fontWeight: '300',
   },
   normalArrowImage: {
-    tintColor: '#FFC491',
+    tintColor: dark.primary,
   },
   normalArrowContainer: {
-    backgroundColor: '#383838',
+    backgroundColor: dark.elevation,
     height: 30,
     width: 30,
     borderRadius: 15,
@@ -52,7 +55,7 @@ const DarkTheme: Theme = {
   },
   selectedDayText: {
     fontWeight: '700',
-    color: '#383838',
+    color: dark.primaryText,
   },
   normalDayContainer: {
     height: DAY_SIZE,
@@ -63,7 +66,7 @@ const DarkTheme: Theme = {
     marginVertical: 4,
   },
   selectedDayContainer: {
-    backgroundColor: '#FFC491',
+    backgroundColor: dark.primary,
     borderRadius: DAY_SIZE / 2,
   },
 };
