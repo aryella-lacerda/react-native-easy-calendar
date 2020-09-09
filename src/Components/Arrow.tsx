@@ -26,7 +26,7 @@ const Arrow: React.FC<Props> = ({ direction, isDisabled, onPress }) => {
       <Image
         testID={'arrow-image'}
         accessibilityIgnoresInvertColors
-        source={Icons.arrow}
+        source={Icons.arrow.left['16px']}
         style={[
           theme.normalArrowImage,
           isDisabled && theme.disabledArrowImage,

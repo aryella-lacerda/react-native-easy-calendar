@@ -1,3 +1,7 @@
 export default {
-  arrow: require('./rightArrow.png'),
+  arrow: {
+    left: {
+      '16px': require('./chevron-left-16.png'),
+    },
+  },
 };
