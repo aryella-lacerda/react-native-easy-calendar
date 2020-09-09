@@ -13,14 +13,12 @@ export interface Props {
 
 const Month: React.FC<Props> = ({ date, onPress, isSelected, isDisabled }) => {
   const theme = React.useContext<Theme>(ThemeContext);
-  const months: string[] = date.localeData().monthsShort();
-  const index = date.month();
 
   return (
     <TouchableOpacity
       testID={'month-container'}
       accessibilityRole={'button'}
-      accessibilityLabel={months[index]}
+      accessibilityLabel={date.format('MMM')}
       accessibilityState={{ disabled: isDisabled, selected: isSelected }}
       accessibilityHint={'Press to select this month and return to calendar month view'}
       disabled={isDisabled}
@@ -37,7 +35,7 @@ const Month: React.FC<Props> = ({ date, onPress, isSelected, isDisabled }) => {
           isSelected && theme.selectedMonthText,
           isDisabled && theme.disabledMonthText,
         ]}>
-        {months[index]}
+        {date.format('MMM')}
       </Text>
     </TouchableOpacity>
   );
