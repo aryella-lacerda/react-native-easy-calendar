@@ -8,6 +8,7 @@ import {
   WeekdaysComponentType,
   MonthComponentType,
   DayComponentType,
+  LightTheme,
 } from 'react-native-easy-calendar';
 import Wrapper from '../Wrapper';
 
@@ -66,6 +67,12 @@ const CustomComponents = () => {
           WeekdaysComponent={CustomWeekdays}
           MonthComponent={CustomMonth}
           DayComponent={CustomDay}
+          theme={{
+            ...LightTheme,
+            calendarContainer: {
+              height: 350,
+            },
+          }}
         />
       </Wrapper>
     </View>
