@@ -147,7 +147,6 @@ const BaseCalendar: React.FC<Props> = ({
   }, [month, verifyUnitIsBeforeMinDate, verifyUnitIsPastMaxDate]);
 
   const subtractMonth = useCallback(() => {
-    console.log(month.last.start.local().format());
     setVisibleDate(month.last.start.local().format());
     verifyUnitIsPastMaxDate(month.current.start);
     verifyUnitIsBeforeMinDate(month.beforeLast);
