@@ -157,7 +157,6 @@ const DefaultTheme: Theme = {
   endOfWeekDayContainer: {},
   startOfMonthDayContainer: {},
   endOfMonthDayContainer: {},
-  dayHighlightContainer: {},
   normalDayText: text.normal,
   disabledDayText: text.disabled,
   selectedDayText: text.selected,

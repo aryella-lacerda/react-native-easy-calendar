@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import type { DateProperties, Theme } from '../Entities';
 import { ThemeContext } from '../Contexts';
 
@@ -37,8 +37,6 @@ const Day: React.FC<Props> = ({
   isExtraDay = false,
 }) => {
   const theme = React.useContext<Theme>(ThemeContext);
-  const isHightlighted = isSelected || isPeriodEnd || isPeriodStart;
-
   const _onPress = () => {
     if (date) {
       onPress(date);
@@ -84,27 +82,23 @@ const Day: React.FC<Props> = ({
         isEndOfMonth && theme.endOfMonthDayContainer,
         isExtraDay && theme.extraDayContainer,
       ]}>
-      <View
-        testID={'day-highlight-container'}
-        style={isHightlighted && theme.dayHighlightContainer}>
-        <Text
-          testID={'day-text'}
-          style={[
-            theme.normalDayText,
-            isPeriod && theme.periodDayText,
-            isDisabled && theme.disabledDayText,
-            isSelected && theme.selectedDayText,
-            isPeriodEnd && theme.periodEndDayText,
-            isPeriodStart && theme.periodStartDayText,
-            isStartOfWeek && theme.startOfWeekDayText,
-            isEndOfWeek && theme.endOfWeekDayText,
-            isStartOfMonth && theme.startOfMonthDayText,
-            isEndOfMonth && theme.endOfMonthDayText,
-            isExtraDay && theme.extraDayText,
-          ]}>
-          {dayjs(date).date()}
-        </Text>
-      </View>
+      <Text
+        testID={'day-text'}
+        style={[
+          theme.normalDayText,
+          isPeriod && theme.periodDayText,
+          isDisabled && theme.disabledDayText,
+          isSelected && theme.selectedDayText,
+          isPeriodEnd && theme.periodEndDayText,
+          isPeriodStart && theme.periodStartDayText,
+          isStartOfWeek && theme.startOfWeekDayText,
+          isEndOfWeek && theme.endOfWeekDayText,
+          isStartOfMonth && theme.startOfMonthDayText,
+          isEndOfMonth && theme.endOfMonthDayText,
+          isExtraDay && theme.extraDayText,
+        ]}>
+        {dayjs(date).date()}
+      </Text>
     </TouchableOpacity>
   );
 };

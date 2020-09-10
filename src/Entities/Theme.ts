@@ -65,10 +65,6 @@ export interface Theme {
   startOfMonthDayContainer: StyleProp<ViewStyle>;
   endOfMonthDayContainer: StyleProp<ViewStyle>;
 
-  // View between the day text and the button used for creating highlight styles
-  // that might not be possible with only one container view
-  dayHighlightContainer: StyleProp<ViewStyle>;
-
   normalDayText: StyleProp<TextStyle>;
   disabledDayText: StyleProp<TextStyle>;
   selectedDayText: StyleProp<TextStyle>;

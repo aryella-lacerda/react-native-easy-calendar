@@ -221,13 +221,6 @@ describe('Theme context', () => {
     });
   });
 
-  // describe('Highlight container', () => {
-  //   test('Container applies normal theme in enabled state', () => {
-  //     const day = new DayPage({});
-  //     expect(day.highlightContainer).toHaveStyle(theme.dayHighlightContainer);
-  //   });
-  // });
-
   describe('Text', () => {
     test('Text applies normal theme in enabled state', () => {
       const day = new DayPage({});
@@ -374,7 +367,6 @@ describe('Theme context', () => {
 
 class DayPage {
   container: ReactTestInstance;
-  highlightContainer: ReactTestInstance;
   text: ReactTestInstance;
 
   constructor({
@@ -389,15 +381,11 @@ class DayPage {
     );
 
     this.container = getByTestId('day-container');
-    this.highlightContainer = getByTestId('day-highlight-container');
     this.text = getByTestId('day-text');
   }
 }
 
 const containerStyles = {
-  dayHighlightContainer: {
-    backgroundColor: 'pink',
-  },
   normalDayContainer: {
     marginTop: 2,
     marginLeft: 1,
