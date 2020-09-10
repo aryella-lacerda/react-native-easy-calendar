@@ -6,6 +6,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 
 import { ThemeContext } from '../Contexts';
 import { DefaultTheme } from '../Themes';
+import { DefaultLocale } from '../Locales';
 
 dayjs.extend(LocaleData);
 
@@ -104,19 +105,20 @@ class MonthPage {
   text: ReactTestInstance;
 
   constructor({
-    date = dayjs('2020-01-01'),
+    date = '2020-01-01',
     onPress = () => {},
+    locale = DefaultLocale,
     isSelected = false,
     isDisabled = false,
   }: Partial<Props>) {
     const { getByLabelText, getByTestId } = render(
       <ThemeContext.Provider value={theme}>
-        <Month {...{ date, onPress, isSelected, isDisabled }} />
+        <Month {...{ locale, date, onPress, isSelected, isDisabled }} />
       </ThemeContext.Provider>
     );
 
-    const months = date.localeData().monthsShort();
-    const index = date.month();
+    const months = dayjs(date).localeData().monthsShort();
+    const index = dayjs(date).month();
 
     this.component = getByLabelText(months[index]);
     this.text = getByTestId('month-text');
@@ -150,4 +152,9 @@ const theme = {
     marginLeft: 10,
     color: 'gray',
   },
+};
+
+export const testLocale = {
+  ...DefaultLocale,
+  monthsShort: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
 };

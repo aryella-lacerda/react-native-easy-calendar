@@ -1,10 +1,14 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { TouchableOpacity, Text } from 'react-native';
-import { fireEvent } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import type { ReactTestInstance } from 'react-test-renderer';
 
-import type { MonthComponentType } from '../Entities';
-import { MonthsPage, testLocale, testTheme } from './Months.page';
+import { ThemeContext } from '../Contexts';
+import { DefaultTheme } from '../Themes';
+import type { Theme, MonthComponentType } from '../Entities';
+
+import Months, { Props } from './Months';
 
 const getDisabledMonths = (month: ReactTestInstance) =>
   month.props.accessibilityState.disabled;
@@ -113,15 +117,6 @@ describe('Disables the correct months', () => {
   });
 });
 
-describe('Locale context', () => {
-  test('Renders months according to locale', () => {
-    const months = new MonthsPage({ locale: testLocale });
-    for (let i = 0; i < months.monthArray.length; i++) {
-      expect(months.monthArray[i]).toHaveTextContent(testLocale.monthsShort[i]);
-    }
-  });
-});
-
 describe('Theme context', () => {
   test('Months container applies monthsContainer theme', () => {
     const months = new MonthsPage({ theme: testTheme });
@@ -139,8 +134,8 @@ describe('Custom month component', () => {
     <TouchableOpacity
       testID={'custom-month'}
       accessibilityState={{ disabled: isDisabled, selected: isSelected }}
-      onPress={onPress}>
-      <Text>{date.format('MMM')}</Text>
+      onPress={() => onPress(date)}>
+      <Text>{dayjs(date).format('MMM')}</Text>
     </TouchableOpacity>
   );
 
@@ -149,13 +144,6 @@ describe('Custom month component', () => {
     const months = new MonthsPage({ MonthComponent, onPressMonth });
     months.firstCustomMonth && fireEvent.press(months.firstCustomMonth);
     expect(onPressMonth).toHaveBeenCalledTimes(1);
-  });
-
-  test('custom month receives children prop according to locale', () => {
-    const months = new MonthsPage({ locale: testLocale });
-    for (let i = 0; i < months.customMonthArray.length; i++) {
-      expect(months.customMonthArray[i]).toHaveTextContent(testLocale.monthsShort[i]);
-    }
   });
 
   describe('custom month receives isSelected prop', () => {
@@ -239,3 +227,53 @@ describe('Custom month component', () => {
     });
   });
 });
+
+export class MonthsPage {
+  component: ReactTestInstance;
+  firstMonth?: ReactTestInstance;
+  firstCustomMonth?: ReactTestInstance;
+  monthArray: ReactTestInstance[];
+  customMonthArray: ReactTestInstance[];
+
+  constructor({
+    onPressMonth = () => {},
+    dateProperties = {},
+    visibleDate = dayjs('2020-05-01'),
+    MonthComponent,
+    minDate,
+    maxDate,
+    theme = DefaultTheme,
+  }: Partial<Props> & { theme?: Theme }) {
+    const { getAllByRole, getByTestId, getAllByTestId } = render(
+      <ThemeContext.Provider value={theme}>
+        <Months
+          {...{
+            MonthComponent,
+            onPressMonth,
+            dateProperties,
+            visibleDate,
+            minDate,
+            maxDate,
+          }}
+        />
+      </ThemeContext.Provider>
+    );
+
+    this.component = getByTestId('months-container');
+    this.monthArray = !MonthComponent ? getAllByRole('button') : [];
+    this.customMonthArray = MonthComponent ? getAllByTestId('custom-month') : [];
+
+    this.firstMonth = this.monthArray.length ? this.monthArray[0] : undefined;
+    this.firstCustomMonth = this.customMonthArray.length
+      ? this.customMonthArray[0]
+      : undefined;
+  }
+}
+
+export const testTheme = {
+  ...DefaultTheme,
+  monthsContainer: {
+    marginTop: 10,
+    backgroundColor: 'black',
+  },
+};

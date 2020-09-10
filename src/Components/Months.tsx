@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import dayjs, { Dayjs } from 'dayjs';
 
-import type { DateProperties, Theme, MonthComponentType } from '../Entities';
-import { ThemeContext } from '../Contexts';
+import type { DateProperties, Theme, MonthComponentType, Locale } from '../Entities';
+import { ThemeContext, LocaleContext } from '../Contexts';
 import { dateRange } from '../Utils';
 
 import { Month as DefaultMonth } from '.';
@@ -32,6 +32,7 @@ const Months: React.FC<Props> = ({
   maxDate,
 }) => {
   const theme = React.useContext<Theme>(ThemeContext);
+  const locale = React.useContext<Locale>(LocaleContext);
 
   const monthsOfVisibleYear = dateRange(
     visibleDate.startOf('year'),
@@ -59,9 +60,10 @@ const Months: React.FC<Props> = ({
         return (
           <Month
             key={index}
-            date={month}
+            locale={locale}
+            date={month.format('YYYY-MM-DD')}
             isSelected={selectedMonths[month.format('YYYY-MM-DD')]}
-            onPress={() => onPressMonth(month.format('YYYY-MM-DD'))}
+            onPress={onPressMonth}
             isDisabled={
               !!(maxDate && month.startOf('month').isAfter(maxDate, 'day')) ||
               !!(minDate && month.endOf('month').isBefore(minDate, 'day'))

@@ -49,8 +49,11 @@ const CustomDay: DayComponentType = ({ date, onPress, isDisabled }) => (
 );
 
 const CustomMonth: MonthComponentType = ({ date, onPress, isDisabled }) => (
-  <TouchableOpacity style={styles.monthContainer} onPress={onPress} disabled={isDisabled}>
-    <Text>{date.format('MMM')}</Text>
+  <TouchableOpacity
+    style={styles.monthContainer}
+    onPress={() => onPress(date)}
+    disabled={isDisabled}>
+    <Text>{dayjs(date).format('MMM')}</Text>
   </TouchableOpacity>
 );
 
