@@ -25,14 +25,14 @@ test('Component calls onPress callback when clicked', () => {
 
 describe('Renders the correct string for date', () => {
   test('Valid date', () => {
-    const date = dayjs('2020-09-18');
+    const date = '2020-09-18';
     const day = new DayPage({ date });
     expect(day.text).toHaveTextContent('18');
   });
 
   test('Invalid date', () => {
     console.warn = jest.fn();
-    const date = dayjs('18-09-2020');
+    const date = '18-09-2020';
     const day = new DayPage({ date });
     expect(day.text).toHaveTextContent('');
   });
@@ -378,7 +378,7 @@ class DayPage {
   text: ReactTestInstance;
 
   constructor({
-    date = dayjs('2020-01-01'),
+    date = '2020-01-01',
     onPress = () => {},
     ...booleanProps
   }: Partial<Props>) {

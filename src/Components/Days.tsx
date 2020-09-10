@@ -33,31 +33,19 @@ const Days: React.FC<Props> = ({
   const { month } = useSurroundingTimeUnits(visibleDate.local().format());
   const daysOfVisibleMonth = dateRange(month.current.start, month.current.end);
 
-  let initialSlots: (Dayjs | null)[], finalSlots: (Dayjs | null)[];
   const initSlotsAvailable = month.current.start.day();
   const daysInWeek = 6; // 0-indexed
   const finalSlotsAvailable = daysInWeek - month.current.end.day();
 
-  if (showExtraDates) {
-    initialSlots = getExtraDays({
-      from: month.last.end.subtract(initSlotsAvailable - 1, 'day'),
-      to: month.last.end,
-    });
+  const initialSlots: Dayjs[] = getExtraDays({
+    from: month.last.end.subtract(initSlotsAvailable - 1, 'day'),
+    to: month.last.end,
+  });
 
-    finalSlots = getExtraDays({
-      from: month.next.start,
-      to: month.next.start.add(finalSlotsAvailable - 1, 'day'),
-    });
-  } else {
-    initialSlots = Array(initSlotsAvailable).fill(null);
-    finalSlots = Array(finalSlotsAvailable).fill(null);
-  }
-
-  const onPress = (day: Dayjs | null) => {
-    if (day) {
-      onPressDay(day.format());
-    }
-  };
+  const finalSlots: Dayjs[] = getExtraDays({
+    from: month.next.start,
+    to: month.next.start.add(finalSlotsAvailable - 1, 'day'),
+  });
 
   const Day = CustomDay || DefaultDay;
   return (
@@ -66,8 +54,8 @@ const Days: React.FC<Props> = ({
         <Day
           key={index}
           showExtraDates={showExtraDates}
-          date={day}
-          onPress={() => onPress(day)}
+          date={day.format()}
+          onPress={onPressDay}
           isDisabled
           isExtraDay
         />
@@ -78,13 +66,13 @@ const Days: React.FC<Props> = ({
           <Day
             {...dayProperties}
             key={day.date()}
-            date={day}
+            date={day.local().format('YYYY-MM-DD')}
             showExtraDates={showExtraDates}
             isStartOfMonth={month.current.start.isSame(day, 'day')}
             isEndOfMonth={month.current.end.isSame(day, 'day')}
             isStartOfWeek={day.day() === 0}
             isEndOfWeek={day.day() === 6}
-            onPress={() => onPress(day)}
+            onPress={onPressDay}
             isExtraDay={false}
             isDisabled={
               dayProperties?.isDisabled ||
@@ -97,9 +85,9 @@ const Days: React.FC<Props> = ({
       {finalSlots.map((day, index) => (
         <Day
           key={index}
-          date={day}
+          date={day.format()}
           showExtraDates={showExtraDates}
-          onPress={() => onPress(day)}
+          onPress={onPressDay}
           isDisabled
           isExtraDay
         />

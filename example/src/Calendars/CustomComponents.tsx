@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { Text, TouchableOpacity, View, Dimensions, StyleSheet } from 'react-native';
 import {
   DateSelectionCalendar,
@@ -39,8 +40,11 @@ const CustomWeekdays: WeekdaysComponentType = ({ days }) => (
 );
 
 const CustomDay: DayComponentType = ({ date, onPress, isDisabled }) => (
-  <TouchableOpacity onPress={onPress} disabled={isDisabled} style={styles.dayContainer}>
-    <Text>{date?.date()}</Text>
+  <TouchableOpacity
+    onPress={() => onPress(date)}
+    disabled={isDisabled}
+    style={styles.dayContainer}>
+    <Text>{dayjs(date).date()}</Text>
   </TouchableOpacity>
 );
 

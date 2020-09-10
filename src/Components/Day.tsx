@@ -1,15 +1,16 @@
 import React from 'react';
-import type { Dayjs } from 'dayjs';
-import { Text, TouchableOpacity, View } from 'react-native';
-// import * as Animatable from 'react-native-animatable';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
-// import { checkChangedProps } from '../Utils';
+import { Text, TouchableOpacity, View } from 'react-native';
 import type { DateProperties, Theme } from '../Entities';
 import { ThemeContext } from '../Contexts';
 
+dayjs.extend(localizedFormat);
+
 interface OtherProps {
-  date: Dayjs | null;
-  onPress: () => void;
+  date: string;
+  onPress: (date: string) => void;
   isStartOfWeek?: boolean;
   isEndOfWeek?: boolean;
   isStartOfMonth?: boolean;
@@ -36,23 +37,25 @@ const Day: React.FC<Props> = ({
   isExtraDay = false,
 }) => {
   const theme = React.useContext<Theme>(ThemeContext);
-  // const ref = React.useRef<Animatable.Text | null>(null);
   const isHightlighted = isSelected || isPeriodEnd || isPeriodStart;
 
-  // ref.current?.bounce?.(800);
-  // console.log('Date rerendered: ', dayjs(date).date());
+  const _onPress = () => {
+    if (date) {
+      onPress(date);
+    }
+  };
 
   if (isExtraDay) {
     return (
       <TouchableOpacity
         disabled
         testID={'extra-day-container'}
-        accessibilityLabel={date ? `${date.format('LL')}` : ''}
+        accessibilityLabel={date ? `${dayjs(date).format('LL')}` : ''}
         accessibilityState={{ disabled: true, selected: false }}
-        onPress={onPress}
+        onPress={_onPress}
         style={[theme.normalDayContainer, theme.extraDayContainer]}>
         <Text testID={'extra-day-text'} style={[theme.normalDayText, theme.extraDayText]}>
-          {showExtraDates && date?.date()}
+          {showExtraDates && dayjs(date).date()}
         </Text>
       </TouchableOpacity>
     );
@@ -61,13 +64,13 @@ const Day: React.FC<Props> = ({
   return (
     <TouchableOpacity
       testID={'day-container'}
-      accessibilityLabel={date ? `${date.format('LL')}` : ''}
+      accessibilityLabel={date ? `${dayjs(date).format('LL')}` : ''}
       accessibilityState={{
         disabled: !!(isDisabled || isExtraDay),
         selected: !!(isSelected || isPeriod),
       }}
       disabled={isDisabled || isExtraDay}
-      onPress={onPress}
+      onPress={_onPress}
       style={[
         theme.normalDayContainer,
         isPeriod && theme.periodDayContainer,
@@ -85,10 +88,6 @@ const Day: React.FC<Props> = ({
         testID={'day-highlight-container'}
         style={isHightlighted && theme.dayHighlightContainer}>
         <Text
-          // @ts-ignore
-          // ref={ref}
-          // duration={800}
-          // animation="bounce"
           testID={'day-text'}
           style={[
             theme.normalDayText,
@@ -103,7 +102,7 @@ const Day: React.FC<Props> = ({
             isEndOfMonth && theme.endOfMonthDayText,
             isExtraDay && theme.extraDayText,
           ]}>
-          {date?.date()}
+          {dayjs(date).date()}
         </Text>
       </View>
     </TouchableOpacity>
