@@ -25,8 +25,13 @@ const text = StyleSheet.create({
   disabled: {
     color: light.disabled,
   },
+  month: {
+    fontWeight: '800',
+    fontSize: 11,
+    textTransform: 'uppercase',
+  },
   highlighted: {
-    color: light.baseText,
+    color: light.primary,
   },
   title: {
     fontStyle: 'normal',
@@ -129,7 +134,10 @@ const DefaultTheme: Theme = {
   normalMonthContainer: container.month,
   disabledMonthContainer: {},
   selectedMonthContainer: {},
-  normalMonthText: text.normal,
+  normalMonthText: {
+    ...text.normal,
+    ...text.month,
+  },
   disabledMonthText: text.disabled,
   selectedMonthText: text.highlighted,
   titleContainer: {},
