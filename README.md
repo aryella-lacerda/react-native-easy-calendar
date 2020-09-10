@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/horizontal-logo.svg" width="300" alt="React Native Easy Calendar" />
+  <img src="docs/horizontal-logo.svg" width="450" alt="React Native Easy Calendar" />
 </div>
 
 </br>
@@ -103,7 +103,7 @@ $ yarn add react-native-easy-calendar dayjs
 
 <div align="center">
   <kbd>
-    <img src="docs/dark-theme1.gif" width="250">
+    <img src="docs/dark-theme1.gif" width="400">
   </kbd>
 </div>
 
