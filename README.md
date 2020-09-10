@@ -2,8 +2,6 @@
   <img src="docs/horizontal-logo.svg" width="450" alt="React Native Easy Calendar" />
 </div>
 
-</br>
-
 <h3 align="center">
   Customizable, easy-to-use, performant calendar components for React Native. 🗓📆
 </h3>
@@ -26,8 +24,6 @@
     <img src="docs/dark-theme1.gif" alt="React Native Easy Calendar - Dark theme example" width='300'/>
   </kbd>
 </div>
-
-</br>
 
 # Table of Contents
 
@@ -52,8 +48,6 @@
 [Contributing](#contributing)
 
 - [License](#license)
-
-</br>
 
 ## Concept
 
