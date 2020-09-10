@@ -41,8 +41,8 @@ export interface Props {
   WeekdaysComponent?: WeekdaysComponentType;
   testID?: string;
   showExtraDates?: boolean;
-  allowYearView?: boolean; // Boolean that disables the calendar year view (the view that renders months and not days)
-  onPressDay: (date: string) => void; // Recieves a YYYY-MM-DD format string
+  allowYearView?: boolean; // Boolean that disables the calendar year view
+  onPressDay: (date: string) => void; // Recieves a date format string
   minDate?: string; // YYYY-MM-DD format string respresenting the minimum date that can be selected
   maxDate?: string; // YYYY-MM-DD format string respresenting the maximum date that can be selected
   initVisibleDate?: string; // YYYY-MM-DD format string respresenting the date that should be visible when the calendar first renders

@@ -26,9 +26,9 @@ export interface Props {
   DayComponent?: DayComponentType;
   MonthComponent?: MonthComponentType;
   WeekdaysComponent?: WeekdaysComponentType;
-  // Callback function that recieves a YYYY-MM-DD format string, called when the user presses a date
+  // Callback function that receives date string, called when the user presses a date
   onSelectDate: (date: string) => void;
-  // YYYY-MM-DD format string respresenting the currently selected date
+  // Date string respresenting the currently selected date
   selectedDate: string;
   // Array of 'YYYY-MM-DD' format strings representing the disabled dates
   disabledDates?: string[];
@@ -38,7 +38,7 @@ export interface Props {
   maxDate?: string;
   // YYYY-MM-DD format string respresenting the date that should be visible when the calendar first renders
   initVisibleDate?: string;
-  // Boolean that disables the calendar year view (the view that renders months and not days)
+  // Boolean that disables the calendar year view
   allowYearView?: boolean;
   showExtraDates?: boolean;
   testID?: string;
@@ -85,7 +85,7 @@ const DateSelectionCalendar: React.FC<Props> = ({
       onPressDay={onSelectDate}
       initVisibleDate={initVisibleDate || selectedDate}
       dateProperties={dateProperties}
-      {...others} // Defined in Prop type but not relevant to this wrapper component
+      {...others}
     />
   );
 };
