@@ -32,15 +32,16 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "calendar"
   ],
-  "repository": "https://github.com/aryella18/react-native-easy-calendar",
-  "author": "Aryella Lacerda <aryella.lacerda@gmail.com> (https://github.com/aryella18)",
+  "repository": "https://github.com/aryella-lacerda/react-native-easy-calendar",
+  "author": "Aryella Lacerda <aryella.lacerda@gmail.com> (https://github.com/aryella-lacerda)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aryella18/react-native-easy-calendar/issues"
+    "url": "https://github.com/aryella-lacerda/react-native-easy-calendar/issues"
   },
-  "homepage": "https://github.com/aryella18/react-native-easy-calendar#readme",
+  "homepage": "https://github.com/aryella-lacerda/react-native-easy-calendar#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",
