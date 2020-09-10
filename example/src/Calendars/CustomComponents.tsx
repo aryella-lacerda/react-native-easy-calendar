@@ -15,29 +15,30 @@ import Wrapper from '../Wrapper';
 
 const { width } = Dimensions.get('screen');
 
-const CustomTitle: TitleComponentType = ({
-  date,
-  onPress,
-  isDisabled,
-  activeView,
-  locale,
-}) => (
-  <TouchableOpacity onPress={() => onPress(date)} disabled={isDisabled}>
-    <Text>
-      {activeView === VIEW.MONTH
-        ? `${dayjs(date).locale(locale).format('MMMM YYYY')}`
-        : `${dayjs(date).locale(locale).format('YYYY')}`}
-    </Text>
-  </TouchableOpacity>
+const CustomTitle: TitleComponentType = React.memo(
+  ({ date, onPress, isDisabled, activeView, locale }) => {
+    const _onPress = React.useCallback(() => onPress(date), [date, onPress]);
+    const _date = dayjs(date).locale(locale);
+
+    return (
+      <TouchableOpacity onPress={_onPress} disabled={isDisabled}>
+        <Text>
+          {activeView === VIEW.MONTH
+            ? `${_date.format('MMMM YYYY')}`
+            : `${_date.format('YYYY')}`}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
 );
 
-const CustomArrow: ArrowComponentType = ({ direction, isDisabled, onPress }) => (
+const CustomArrow: ArrowComponentType = React.memo(({ direction, isDisabled, onPress }) => (
   <TouchableOpacity onPress={onPress} disabled={isDisabled}>
     <Text>{`${direction === 'left' ? '<' : '>'}`}</Text>
   </TouchableOpacity>
-);
+));
 
-const CustomWeekdays: WeekdaysComponentType = ({ days }) => (
+const CustomWeekdays: WeekdaysComponentType = React.memo(({ days }) => (
   <View style={styles.weekdaysContainer}>
     {days.map((day, index) => (
       <Text key={index} style={styles.weekdayText}>
@@ -45,24 +46,31 @@ const CustomWeekdays: WeekdaysComponentType = ({ days }) => (
       </Text>
     ))}
   </View>
-);
+));
 
-const CustomDay: DayComponentType = ({ date, onPress, isDisabled }) => (
-  <TouchableOpacity
-    onPress={() => onPress(date)}
-    disabled={isDisabled}
-    style={styles.dayContainer}>
-    <Text>{dayjs(date).date()}</Text>
-  </TouchableOpacity>
-);
+const CustomDay: DayComponentType = React.memo(({ date, onPress, isDisabled }) => {
+  const _onPress = React.useCallback(() => onPress(date), [date, onPress]);
 
-const CustomMonth: MonthComponentType = ({ date, onPress, isDisabled }) => (
-  <TouchableOpacity
-    style={styles.monthContainer}
-    onPress={() => onPress(date)}
-    disabled={isDisabled}>
-    <Text>{dayjs(date).format('MMM')}</Text>
-  </TouchableOpacity>
+  return (
+    <TouchableOpacity onPress={_onPress} disabled={isDisabled} style={styles.dayContainer}>
+      <Text>{dayjs(date).date()}</Text>
+    </TouchableOpacity>
+  );
+});
+
+const CustomMonth: MonthComponentType = React.memo(
+  ({ date, onPress, isDisabled, locale }) => {
+    const _onPress = React.useCallback(() => onPress(date), [date, onPress]);
+
+    return (
+      <TouchableOpacity
+        style={styles.monthContainer}
+        onPress={_onPress}
+        disabled={isDisabled}>
+        <Text>{dayjs(date).locale(locale).format('MMM')}</Text>
+      </TouchableOpacity>
+    );
+  }
 );
 
 const CustomComponents = () => {
