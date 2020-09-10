@@ -20,16 +20,12 @@ test('Title render without error', () => {
 });
 
 test('Title renders date string in default format', () => {
-  const title = new TitlePage({
-    date: dayjs('2020-09-18').locale('default', DefaultLocale),
-  });
+  const title = new TitlePage({ date: '2020-09-18', locale: DefaultLocale });
   expect(title.text).toHaveTextContent('September 2020');
 });
 
 test('Title receives locale context', () => {
-  const title = new TitlePage({
-    date: dayjs('2020-09-18').locale('custom', testLocale),
-  });
+  const title = new TitlePage({ date: '2020-09-18', locale: testLocale });
   expect(title.text).toHaveTextContent('I 2020');
 });
 
@@ -69,14 +65,15 @@ class TitlePage {
   text: ReactTestInstance;
 
   constructor({
-    date = dayjs('2020-01-01'),
+    date = '2020-01-01',
+    locale = DefaultLocale,
     onPress = () => {},
     isDisabled = false,
     activeView = VIEW.MONTH,
   }: Partial<Props>) {
     const { getByTestId, getByRole } = render(
       <ThemeContext.Provider value={theme}>
-        <Title {...{ activeView, date, onPress, isDisabled }} />
+        <Title {...{ locale, activeView, date, onPress, isDisabled }} />
       </ThemeContext.Provider>
     );
 

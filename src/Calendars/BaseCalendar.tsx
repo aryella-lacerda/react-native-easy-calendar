@@ -183,7 +183,8 @@ const BaseCalendar: React.FC<Props> = ({
         />
         <Title
           activeView={activeView}
-          date={localeAwareVisibleDate}
+          locale={locale}
+          date={localeAwareVisibleDate.format('YYYY-MM-DD')}
           isDisabled={!allowYearView}
           onPress={toggleCalendarView}
         />

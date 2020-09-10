@@ -15,10 +15,18 @@ import Wrapper from '../Wrapper';
 
 const { width } = Dimensions.get('screen');
 
-const CustomTitle: TitleComponentType = ({ date, onPress, isDisabled, activeView }) => (
-  <TouchableOpacity onPress={onPress} disabled={isDisabled}>
+const CustomTitle: TitleComponentType = ({
+  date,
+  onPress,
+  isDisabled,
+  activeView,
+  locale,
+}) => (
+  <TouchableOpacity onPress={() => onPress(date)} disabled={isDisabled}>
     <Text>
-      {activeView === VIEW.MONTH ? `${date.format('MMMM YYYY')}` : `${date.format('YYYY')}`}
+      {activeView === VIEW.MONTH
+        ? `${dayjs(date).locale(locale).format('MMMM YYYY')}`
+        : `${dayjs(date).locale(locale).format('YYYY')}`}
     </Text>
   </TouchableOpacity>
 );
