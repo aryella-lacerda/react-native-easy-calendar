@@ -62,12 +62,13 @@ The community's been well-served by Wix's [react-native-calendars](https://githu
 
 ## Roadmap
 
-_[September 2020]:_ Currently, we support only a single-date selection calendar. In the next couple of releases:
+Currently, we support only a single-date selection calendar. In the next couple of releases:
 
-- add multi-date selection support
-- add period selection calendar
-- add `makeNumberOfLinesConsistent` prop
-- increased code coverage
+- multi-date selection support
+- new period selection calendar
+- accessibility improvements
+- code coverage improvements
+- add E2E tests to CI pipeline
 
 ## Compatibility
 
@@ -502,10 +503,6 @@ export type DayComponentType = (props: DayProps) => JSX.Element;
 interface OtherProps {
   date: string;
   onPress: (date: string) => void;
-  // Used in period selection calendar
-  isPeriod: boolean;
-  isPeriodStart: boolean;
-  isPeriodEnd: boolean;
   // Used in date selection calendar
   isSelected: boolean;
   // Used in both calendars
