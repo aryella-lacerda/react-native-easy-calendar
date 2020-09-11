@@ -54,6 +54,8 @@ const getStyles = (code: 'light' | 'dark') =>
   StyleSheet.create({
     container: {
       backgroundColor: Colors[code].base,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     title: {
       fontSize: 16,

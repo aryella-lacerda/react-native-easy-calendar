@@ -30,6 +30,7 @@ const LocalesCalendar = () => {
         onSelectDate={setSelectedDate}
         selectedDate={selectedDate}
         locale={selectedLocale}
+        showExtraDates={true}
         theme={DarkTheme}
       />
     </Wrappper>

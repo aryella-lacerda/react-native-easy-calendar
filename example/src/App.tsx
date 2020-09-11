@@ -7,6 +7,8 @@ import DisabledDates from './Calendars/DisabledDates';
 import MinMaxDates from './Calendars/MinMaxDates';
 import ForbidYearView from './Calendars/ForbidYearView';
 import CustomComponents from './Calendars/CustomComponents';
+import DarkDimensions from './Calendars/DarkDimensions';
+import LightDimensions from './Calendars/LightDimensions';
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
           <DisabledDates />
           <MinMaxDates />
           <ForbidYearView />
+          <DarkDimensions />
+          <LightDimensions />
           <CustomComponents />
         </ScrollView>
       </SafeAreaView>
