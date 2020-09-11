@@ -35,7 +35,16 @@ const Days: React.FC<Props> = ({
 
   const initSlotsAvailable = month.current.start.day();
   const daysInWeek = 6; // 0-indexed
-  const finalSlotsAvailable = daysInWeek - month.current.end.day();
+  let finalSlotsAvailable = daysInWeek - month.current.end.day();
+
+  const nOfSlotsToFill6Rows = 7 * 6;
+  if (
+    initSlotsAvailable + daysOfVisibleMonth.length + finalSlotsAvailable <
+    nOfSlotsToFill6Rows
+  ) {
+    // Add an extra row at the end of the calendar
+    finalSlotsAvailable += 7;
+  }
 
   const initialSlots: Dayjs[] = getExtraDays({
     from: month.last.end.subtract(initSlotsAvailable - 1, 'day'),
