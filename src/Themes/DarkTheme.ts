@@ -1,21 +1,21 @@
-import { Dimensions } from 'react-native';
 import type { Theme } from '../Entities';
 import DefaultTheme from './DefaultTheme';
 import Colors from './Colors';
 
 const { dark } = Colors;
-const { width } = Dimensions.get('screen');
 
-const CALENDAR_HEIGHT = 335;
-const DAY_SIZE = 32;
-const DAY_MARGIN_HORIZONTAL = (width / 7 - DAY_SIZE) / 2;
+const CALENDAR_HEIGHT = 315;
+const DAY_WIDTH_PERCENTAGE = 60 / 7; // 60% of width distributed among 7 weekdays
+const HORIZONTAL_MARGIN_PERCENT = 40 / (7 * 2); // 40% of margin horizontal distributed among 7 weekdays
+const DAY_HEIGHT_PERCENTAGE = 95 / 6;
+const VERTICAL_MARGIN_PERCENT = 5 / 30;
 
 const DarkTheme: Theme = {
   ...DefaultTheme,
   calendarContainer: {
+    flex: 1,
+    minHeight: CALENDAR_HEIGHT,
     backgroundColor: dark.base,
-    paddingVertical: 10,
-    height: CALENDAR_HEIGHT,
   },
   titleText: {
     color: dark.baseText,
@@ -58,16 +58,16 @@ const DarkTheme: Theme = {
     color: dark.primaryText,
   },
   normalDayContainer: {
-    height: DAY_SIZE,
-    width: DAY_SIZE,
-    marginHorizontal: DAY_MARGIN_HORIZONTAL,
+    width: `${DAY_WIDTH_PERCENTAGE}%`,
+    marginHorizontal: `${HORIZONTAL_MARGIN_PERCENT}%`,
+    height: `${DAY_HEIGHT_PERCENTAGE}%`,
+    marginVertical: `${VERTICAL_MARGIN_PERCENT}%`,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 4,
   },
   selectedDayContainer: {
     backgroundColor: dark.primary,
-    borderRadius: DAY_SIZE / 2,
+    borderRadius: 50,
   },
 };
 

@@ -8,8 +8,10 @@ const { width } = Dimensions.get('screen');
 
 const CALENDAR_HEIGHT = 315;
 const HEADER_HEIGHT = 45;
-const DAY_SIZE = 32;
-const DAY_MARGIN_HORIZONTAL = (width / 7 - DAY_SIZE) / 2;
+const DAY_WIDTH_PERCENTAGE = 60 / 7; // 60% of width distributed among 7 weekdays
+const HORIZONTAL_MARGIN_PERCENT = 40 / (7 * 2); // 40% of margin horizontal distributed among 7 weekdays
+const DAY_HEIGHT_PERCENTAGE = 95 / 6;
+const VERTICAL_MARGIN_PERCENT = 3 / (6 * 2);
 
 const text = StyleSheet.create({
   normal: {
@@ -41,7 +43,8 @@ const text = StyleSheet.create({
     color: light.baseText,
   },
   weekday: {
-    width: width / 7,
+    width: `${DAY_WIDTH_PERCENTAGE}%`,
+    marginHorizontal: `${HORIZONTAL_MARGIN_PERCENT}%`,
     textAlign: 'center',
     textTransform: 'uppercase',
     fontSize: 9,
@@ -56,7 +59,8 @@ const text = StyleSheet.create({
 
 const container = StyleSheet.create({
   calendar: {
-    height: CALENDAR_HEIGHT,
+    flex: 1,
+    minHeight: CALENDAR_HEIGHT,
     backgroundColor: light.base,
   },
   header: {
@@ -70,6 +74,7 @@ const container = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
+    flex: 1,
   },
   weekdays: {
     flexDirection: 'row',
@@ -90,16 +95,16 @@ const container = StyleSheet.create({
     borderRadius: 0,
   },
   normalDay: {
-    height: DAY_SIZE,
-    width: DAY_SIZE,
-    marginHorizontal: DAY_MARGIN_HORIZONTAL,
+    width: `${DAY_WIDTH_PERCENTAGE}%`,
+    marginHorizontal: `${HORIZONTAL_MARGIN_PERCENT}%`,
+    height: `${DAY_HEIGHT_PERCENTAGE}%`,
+    marginVertical: `${VERTICAL_MARGIN_PERCENT}%`,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 4,
   },
   selectedDay: {
     backgroundColor: light.primary,
-    borderRadius: DAY_SIZE / 3,
+    borderRadius: 32 / 3,
     shadowColor: light.baseText,
     shadowOffset: {
       width: 0,
