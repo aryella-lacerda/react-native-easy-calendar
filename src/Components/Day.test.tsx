@@ -58,9 +58,6 @@ describe('Theme context', () => {
 
       expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
       expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
@@ -75,9 +72,6 @@ describe('Theme context', () => {
       ]);
 
       expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
@@ -92,60 +86,6 @@ describe('Theme context', () => {
       ]);
 
       expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
-      expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
-      expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
-      expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
-      expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
-    });
-
-    test('Container applies period themes in period state', () => {
-      const day = new DayPage({ isPeriod: true });
-      expect(day.container).toHaveStyle([
-        theme.normalDayContainer,
-        theme.periodDayContainer,
-      ]);
-
-      expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
-      expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
-      expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
-      expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
-      expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
-      expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
-    });
-
-    test('Container applies start of period themes in start of period state', () => {
-      const day = new DayPage({ isPeriodStart: true });
-      expect(day.container).toHaveStyle([
-        theme.normalDayContainer,
-        theme.periodStartDayContainer,
-      ]);
-
-      expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
-      expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
-      expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
-      expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
-      expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
-      expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
-    });
-
-    test('Container applies end of period themes in end of period state', () => {
-      const day = new DayPage({ isPeriodEnd: true });
-      expect(day.container).toHaveStyle([
-        theme.normalDayContainer,
-        theme.periodEndDayContainer,
-      ]);
-
-      expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
-      expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
@@ -161,9 +101,6 @@ describe('Theme context', () => {
 
       expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
       expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
@@ -178,9 +115,6 @@ describe('Theme context', () => {
 
       expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
       expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
@@ -195,9 +129,6 @@ describe('Theme context', () => {
 
       expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
       expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
@@ -212,9 +143,6 @@ describe('Theme context', () => {
 
       expect(day.container).not.toHaveStyle(theme.selectedDayContainer);
       expect(day.container).not.toHaveStyle(theme.disabledDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodStartDayContainer);
-      expect(day.container).not.toHaveStyle(theme.periodEndDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
@@ -228,9 +156,6 @@ describe('Theme context', () => {
 
       expect(day.text).not.toHaveStyle(theme.disabledDayText);
       expect(day.text).not.toHaveStyle(theme.selectedDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
@@ -242,9 +167,6 @@ describe('Theme context', () => {
       expect(day.text).toHaveStyle([theme.normalDayText, theme.disabledDayText]);
 
       expect(day.text).not.toHaveStyle(theme.selectedDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
@@ -256,51 +178,6 @@ describe('Theme context', () => {
       expect(day.text).toHaveStyle([theme.normalDayText, theme.selectedDayText]);
 
       expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
-      expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
-      expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
-      expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
-      expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
-    });
-
-    test('Text applies period themes in period state', () => {
-      const day = new DayPage({ isPeriod: true });
-      expect(day.text).toHaveStyle([theme.normalDayText, theme.periodDayText]);
-
-      expect(day.text).not.toHaveStyle(theme.selectedDayText);
-      expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
-      expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
-      expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
-      expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
-      expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
-    });
-
-    test('Text applies start of period themes in start of period state', () => {
-      const day = new DayPage({ isPeriodStart: true });
-      expect(day.text).toHaveStyle([theme.normalDayText, theme.periodStartDayText]);
-
-      expect(day.text).not.toHaveStyle(theme.selectedDayText);
-      expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
-      expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
-      expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
-      expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
-      expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
-    });
-
-    test('Text applies end of period themes in end of period state', () => {
-      const day = new DayPage({ isPeriodEnd: true });
-      expect(day.text).toHaveStyle([theme.normalDayText, theme.periodEndDayText]);
-
-      expect(day.text).not.toHaveStyle(theme.selectedDayText);
-      expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
@@ -313,9 +190,6 @@ describe('Theme context', () => {
 
       expect(day.text).not.toHaveStyle(theme.selectedDayText);
       expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
@@ -327,9 +201,6 @@ describe('Theme context', () => {
 
       expect(day.text).not.toHaveStyle(theme.selectedDayText);
       expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
@@ -341,9 +212,6 @@ describe('Theme context', () => {
 
       expect(day.text).not.toHaveStyle(theme.selectedDayText);
       expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
@@ -355,9 +223,6 @@ describe('Theme context', () => {
 
       expect(day.text).not.toHaveStyle(theme.selectedDayText);
       expect(day.text).not.toHaveStyle(theme.disabledDayText);
-      expect(day.text).not.toHaveStyle(theme.periodDayText);
-      expect(day.text).not.toHaveStyle(theme.periodStartDayText);
-      expect(day.text).not.toHaveStyle(theme.periodEndDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
@@ -390,10 +255,6 @@ const containerStyles = {
     marginTop: 2,
     marginLeft: 1,
   },
-  periodDayContainer: {
-    marginTop: 2,
-    marginRight: 1,
-  },
   disabledDayContainer: {
     marginTop: 3,
     marginBottom: 1,
@@ -401,14 +262,6 @@ const containerStyles = {
   selectedDayContainer: {
     marginTop: 4,
     paddingTop: 1,
-  },
-  periodEndDayContainer: {
-    marginTop: 5,
-    paddingBottom: 1,
-  },
-  periodStartDayContainer: {
-    marginTop: 6,
-    paddingLeft: 1,
   },
   startOfWeekDayContainer: {
     marginTop: 7,
@@ -433,10 +286,6 @@ const textStyle = {
     marginTop: 2,
     marginLeft: 1,
   },
-  periodDayText: {
-    marginTop: 2,
-    marginRight: 1,
-  },
   disabledDayText: {
     marginTop: 3,
     marginBottom: 1,
@@ -444,14 +293,6 @@ const textStyle = {
   selectedDayText: {
     marginTop: 4,
     paddingTop: 1,
-  },
-  periodEndDayText: {
-    marginTop: 5,
-    paddingBottom: 1,
-  },
-  periodStartDayText: {
-    marginTop: 6,
-    paddingLeft: 1,
   },
   startOfWeekDayText: {
     marginTop: 7,

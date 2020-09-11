@@ -80,10 +80,10 @@ class Calendar {
       by.id('weekday').withAncestor(calendar).and(by.label('dom.'))
     );
     this.frenchJanuaryLabel = element(
-      by.id('month-text').withAncestor(calendar).and(by.label('janv.'))
+      by.id('month-text').withAncestor(calendar).and(by.label('JANV.'))
     );
     this.spanishJanuaryLabel = element(
-      by.id('month-text').withAncestor(calendar).and(by.label('ene'))
+      by.id('month-text').withAncestor(calendar).and(by.label('ENE'))
     );
 
     // Dates

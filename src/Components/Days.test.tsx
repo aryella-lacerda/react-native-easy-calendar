@@ -99,24 +99,6 @@ describe('Selects the correct days', () => {
     expect(selectedDayLabels[1]).toBe('January 15, 2020');
     expect(selectedDayLabels[2]).toBe('January 31, 2020');
   });
-
-  test('period selection mode', () => {
-    const visibleDate = dayjs('2020-01-01');
-    const dateProperties = {
-      '2020-01-30': { isPeriodStart: true, isPeriod: true },
-      '2020-01-31': { isPeriod: true },
-      '2020-02-01': { isPeriod: true }, // next month, is not rendered
-      '2020-02-02': { isPeriodEnd: true, isPeriod: true }, // next month, is not rendered
-    };
-
-    const days = new DaysPage({ visibleDate, dateProperties });
-    const selectedDays = days.normalDayArray.filter(getSelectedDays);
-    const selectedDayLabels = selectedDays.map(getAccessibilityLabel);
-
-    expect(selectedDays.length).toBe(2);
-    expect(selectedDayLabels[0]).toBe('January 30, 2020');
-    expect(selectedDayLabels[1]).toBe('January 31, 2020');
-  });
 });
 
 describe('Disables the correct days', () => {

@@ -27,9 +27,6 @@ const Day: React.FC<Props> = ({
   showExtraDates = false,
   isDisabled = false,
   isSelected = false,
-  isPeriodEnd = false,
-  isPeriodStart = false,
-  isPeriod = false,
   isStartOfWeek = false,
   isEndOfWeek = false,
   isStartOfMonth = false,
@@ -65,17 +62,14 @@ const Day: React.FC<Props> = ({
       accessibilityLabel={date ? `${dayjs(date).format('LL')}` : ''}
       accessibilityState={{
         disabled: !!(isDisabled || isExtraDay),
-        selected: !!(isSelected || isPeriod),
+        selected: isSelected,
       }}
       disabled={isDisabled || isExtraDay}
       onPress={_onPress}
       style={[
         theme.normalDayContainer,
-        isPeriod && theme.periodDayContainer,
         isDisabled && theme.disabledDayContainer,
         isSelected && theme.selectedDayContainer,
-        isPeriodEnd && theme.periodEndDayContainer,
-        isPeriodStart && theme.periodStartDayContainer,
         isStartOfWeek && theme.startOfWeekDayContainer,
         isEndOfWeek && theme.endOfWeekDayContainer,
         isStartOfMonth && theme.startOfMonthDayContainer,
@@ -86,11 +80,8 @@ const Day: React.FC<Props> = ({
         testID={'day-text'}
         style={[
           theme.normalDayText,
-          isPeriod && theme.periodDayText,
           isDisabled && theme.disabledDayText,
           isSelected && theme.selectedDayText,
-          isPeriodEnd && theme.periodEndDayText,
-          isPeriodStart && theme.periodStartDayText,
           isStartOfWeek && theme.startOfWeekDayText,
           isEndOfWeek && theme.endOfWeekDayText,
           isStartOfMonth && theme.startOfMonthDayText,

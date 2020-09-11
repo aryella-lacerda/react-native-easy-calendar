@@ -43,7 +43,7 @@ const Months: React.FC<Props> = ({
   const selectedMonths = useMemo(() => {
     return Object.entries(dateProperties).reduce(
       (selected: Record<string, boolean>, [date, properties]) => {
-        if (properties.isSelected || properties.isPeriod) {
+        if (properties.isSelected) {
           const month = dayjs(date).startOf('month').format('YYYY-MM-DD');
           selected[month] = true;
         }

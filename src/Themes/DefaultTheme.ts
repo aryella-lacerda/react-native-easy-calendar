@@ -1,5 +1,4 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { addOpacity } from '../Utils';
 import type { Theme } from '../Entities';
 import Colors from './Colors';
 
@@ -89,11 +88,6 @@ const container = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
   },
-  periodDay: {
-    width: '100%',
-    backgroundColor: addOpacity(light.baseText, 0.1),
-    borderRadius: 0,
-  },
   normalDay: {
     width: `${DAY_WIDTH_PERCENTAGE}%`,
     marginHorizontal: `${HORIZONTAL_MARGIN_PERCENT}%`,
@@ -113,9 +107,6 @@ const container = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-  },
-  periodEnds: {
-    borderRadius: 8,
   },
 });
 
@@ -155,9 +146,6 @@ const DefaultTheme: Theme = {
   disabledDayContainer: {},
   selectedDayContainer: container.selectedDay,
   extraDayContainer: {},
-  periodDayContainer: container.periodDay,
-  periodStartDayContainer: container.periodEnds,
-  periodEndDayContainer: container.periodEnds,
   startOfWeekDayContainer: {},
   endOfWeekDayContainer: {},
   startOfMonthDayContainer: {},
@@ -166,9 +154,6 @@ const DefaultTheme: Theme = {
   disabledDayText: text.disabled,
   selectedDayText: text.selected,
   extraDayText: text.disabled,
-  periodDayText: text.highlighted,
-  periodStartDayText: text.highlighted,
-  periodEndDayText: text.highlighted,
   startOfWeekDayText: {},
   endOfWeekDayText: {},
   startOfMonthDayText: {},

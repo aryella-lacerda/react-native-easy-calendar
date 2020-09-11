@@ -49,17 +49,11 @@ export interface Theme {
    *   5. start of month day  // applies to all calendars, month view
    *   6. end of month day    // applies to all calendats, month view
    *   7. selected day        // applies to date selection calendar, month view
-   *   8. period day          // applies to period selection calendar, month view
-   *   9. period start day    // applies to period selection calendar, month view
-   *   10. period end day     // applies to period selection calendar, month view
    */
   normalDayContainer: StyleProp<ViewStyle>;
   disabledDayContainer: StyleProp<ViewStyle>;
   selectedDayContainer: StyleProp<ViewStyle>;
   extraDayContainer: StyleProp<ViewStyle>;
-  periodDayContainer: StyleProp<ViewStyle>;
-  periodStartDayContainer: StyleProp<ViewStyle>;
-  periodEndDayContainer: StyleProp<ViewStyle>;
   startOfWeekDayContainer: StyleProp<ViewStyle>;
   endOfWeekDayContainer: StyleProp<ViewStyle>;
   startOfMonthDayContainer: StyleProp<ViewStyle>;
@@ -69,9 +63,6 @@ export interface Theme {
   disabledDayText: StyleProp<TextStyle>;
   selectedDayText: StyleProp<TextStyle>;
   extraDayText: StyleProp<TextStyle>;
-  periodDayText: StyleProp<TextStyle>;
-  periodStartDayText: StyleProp<TextStyle>;
-  periodEndDayText: StyleProp<TextStyle>;
   startOfWeekDayText: StyleProp<TextStyle>;
   endOfWeekDayText: StyleProp<TextStyle>;
   startOfMonthDayText: StyleProp<TextStyle>;

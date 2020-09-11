@@ -53,21 +53,6 @@ describe('Generates correct set of selected months', () => {
     expect(selectedMonths[0]).toHaveTextContent('Jan');
     expect(selectedMonths[1]).toHaveTextContent('Apr');
   });
-
-  test('Period selection', () => {
-    const dateProperties = {
-      '2020-01-15': { isPeriodStart: true, isPeriod: true },
-      '2020-02-15': { isPeriod: true },
-      '2020-03-15': { isPeriodEnd: true, isPeriod: true },
-    };
-
-    const months = new MonthsPage({ dateProperties });
-    const selectedMonths = months.monthArray.filter(getSelectedMonths);
-    expect(selectedMonths.length).toBe(3);
-    expect(selectedMonths[0]).toHaveTextContent('Jan');
-    expect(selectedMonths[1]).toHaveTextContent('Feb');
-    expect(selectedMonths[2]).toHaveTextContent('Mar');
-  });
 });
 
 describe('Disables the correct months', () => {
@@ -164,18 +149,6 @@ describe('Custom month component', () => {
       const months = new MonthsPage({ MonthComponent, dateProperties });
       const selectedMonths = months.customMonthArray.filter(getSelectedMonths);
       expect(selectedMonths.length).toBe(2);
-    });
-
-    test('Period selection', () => {
-      const dateProperties = {
-        '2020-01-15': { isPeriodStart: true, isPeriod: true },
-        '2020-02-15': { isPeriod: true },
-        '2020-03-15': { isPeriodEnd: true, isPeriod: true },
-      };
-
-      const months = new MonthsPage({ MonthComponent, dateProperties });
-      const selectedMonths = months.customMonthArray.filter(getSelectedMonths);
-      expect(selectedMonths.length).toBe(3);
     });
   });
 
