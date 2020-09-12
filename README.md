@@ -7,13 +7,21 @@
 </h3>
 
 </br>
+
 <div align="center">
   <a href="https://codecov.io/gh/aryella-lacerda/react-native-easy-calendar">
+    <img src="https://img.shields.io/npm/v/react-native-easy-calendar">
+    <img src="https://packagephobia.com/badge?p=react-native-easy-calendar">
     <img src="https://codecov.io/gh/aryella-lacerda/react-native-easy-calendar/branch/master/graph/badge.svg?token=NV10YLJAU8" />
     <img src="https://github.com/aryella-lacerda/react-native-easy-calendar/workflows/CI/badge.svg" />
     <img src="https://img.shields.io/badge/license-MIT-green.svg" />
   </a>
 </div>
+
+<div align="center">
+  <i>Show your support: ⭐️ the repo!</i>
+</div>
+
 </br>
 
 <div align="center">
