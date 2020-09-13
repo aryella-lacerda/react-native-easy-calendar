@@ -1,0 +1,50 @@
+name: E2E - iOS
+
+on:
+  push:
+    branches: [feat/add-e2e-to-ci-pipleine]
+  # pull_request:
+  #   branches: [master]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 10
+
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.2.app
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Setup Node.js
+        uses: actions/setup-node@master
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false # Better for building libraries
+
+      - name: Cache Pods
+        uses: actions/cache@v1
+        id: podcache
+        with:
+          path: ios/Pods
+          key: pods-${{ hashFiles('**/Podfile.lock') }}
+
+      - name: Update Pods
+        run: |
+          gem update cocoapods xcodeproj
+          cd ios && pod install && cd ..
+
+      - run: brew tap wix/brew
+
+      - name: Install Apple Simulator Utils
+        run: brew install applesimutils
+
+      - name: Build
+        run: yarn detox build -c ios
+
+      - name: Run test
+        run: yarn detox test -c ios --cleanup --debug-synchronization 200
