@@ -1,7 +1,7 @@
 {
   "name": "react-native-easy-calendar",
   "version": "0.1.0",
-  "description": "A customizable, easy-to-use, performant calendar component for React Native",
+  "description": "Customizable, easy-to-use, performant calendar components for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -31,9 +31,12 @@
   },
   "keywords": [
     "react-native",
+    "react native",
     "ios",
     "android",
-    "calendar"
+    "calendar",
+    "react native calendar",
+    "react-native-calendar"
   ],
   "repository": "https://github.com/aryella-lacerda/react-native-easy-calendar",
   "author": "Aryella Lacerda <aryella.lacerda@gmail.com> (https://github.com/aryella-lacerda)",
