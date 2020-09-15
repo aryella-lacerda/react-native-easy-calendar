@@ -1,0 +1,27 @@
+name: Typechecking
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  typecheck:
+    name: Type checking code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false # Better for building libraries
+
+      - name: Run TypeScript
+        run: yarn typescript

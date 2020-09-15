@@ -1,0 +1,27 @@
+name: Commit Linting
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  lintcommit:
+    name: Lint commit messages
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install lib dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false # Better for building libraries
+
+      - name: Lint commit message
+        uses: wagoid/commitlint-github-action@v1
