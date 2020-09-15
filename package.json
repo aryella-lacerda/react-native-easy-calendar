@@ -69,6 +69,7 @@
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "jest-circus": "^26.4.2",
+    "jest-cli": "^26.4.2",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
     "react": "16.11.0",
@@ -181,19 +182,20 @@
     "testRunner": "jest",
     "runnerConfig": "e2e/config.json",
     "configurations": {
-      "ios": {
-        "type": "ios.simulator",
+      "ios.sim.debug": {
         "binaryPath": "example/ios/build/Build/Products/Debug-iphonesimulator/EasyCalendarExample.app",
         "build": "xcodebuild -workspace example/ios/EasyCalendarExample.xcworkspace -scheme EasyCalendarExample -configuration Debug -sdk iphonesimulator -derivedDataPath example/ios/build",
+        "type": "ios.simulator",
         "device": {
           "type": "iPhone 11"
         }
       },
-      "android": {
-        "type": "android.emulator",
-        "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
+      "ios.sim.release": {
+        "binaryPath": "example/ios/build/Build/Products/Release-iphonesimulator/EasyCalendarExample.app",
+        "build": "xcodebuild -workspace example/ios/EasyCalendarExample.xcworkspace -scheme EasyCalendarExample -configuration Release -sdk iphonesimulator -derivedDataPath example/ios/build",
+        "type": "ios.simulator",
         "device": {
-          "avdName": "Pixel_2_API_29"
+          "type": "iPhone 11"
         }
       }
     }
