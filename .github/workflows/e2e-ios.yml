@@ -1,50 +1,49 @@
 name: E2E - iOS
 
 on:
-  push:
-    branches: [feat/add-e2e-to-ci-pipleine]
-  # pull_request:
-  #   branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   build:
     runs-on: macos-latest
-    timeout-minutes: 10
 
     env:
       DEVELOPER_DIR: /Applications/Xcode_11.2.app
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v1
 
-      - name: Install dependencies
+      - name: Install lib dependencies
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false # Better for building libraries
 
-      - name: Cache Pods
-        uses: actions/cache@v1
-        id: podcache
+      - name: Install app dependencies
+        uses: bahmutov/npm-install@v1
         with:
-          path: ios/Pods
-          key: pods-${{ hashFiles('**/Podfile.lock') }}
+          working-directory: ./example
 
-      - name: Update Pods
+      # - name: Setup debugging session
+      #   uses: mxschmitt/action-tmate@v3
+
+      # Cache Pod install at some point
+
+      - name: Install pods
+        run: pod install
+        working-directory: ./example/ios
+
+      - name: Install simulator utils
         run: |
-          gem update cocoapods xcodeproj
-          cd ios && pod install && cd ..
+          brew tap wix/brew
+          brew install applesimutils
 
-      - run: brew tap wix/brew
+      - name: Build for detox
+        run: yarn detox build --configuration ios.sim.release
 
-      - name: Install Apple Simulator Utils
-        run: brew install applesimutils
-
-      - name: Build
-        run: yarn detox build -c ios
-
-      - name: Run test
-        run: yarn detox test -c ios --cleanup --debug-synchronization 200
+      - name: Run tests
+        run: yarn detox test --configuration ios.sim.release --cleanup
