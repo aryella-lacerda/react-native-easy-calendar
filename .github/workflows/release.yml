@@ -21,7 +21,8 @@ jobs:
         with:
           useLockFile: false # Better for building libraries
 
+      - name: Generate .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+
       - name: Release version
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-          yarn release --ci
+        run: yarn release --ci
