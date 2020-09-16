@@ -24,5 +24,8 @@ jobs:
       - name: Generate .npmrc
         run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       - name: Release version
         run: yarn release --ci
