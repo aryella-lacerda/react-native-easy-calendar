@@ -23,6 +23,13 @@ jobs:
         with:
           useLockFile: false # Better for building libraries
 
+      - name: Set Git credentials
+        uses: oleksiyrudenko/gha-git-credentials@v1
+        with:
+          name: 'Aryella Lacerda'
+          email: 'aryella.lacerda@gmail.com'
+          token: '${{ secrets.GITHUB_TOKEN }}'
+
       - name: Bump version, add tag, add Github Release
         run: yarn release --ci
 
