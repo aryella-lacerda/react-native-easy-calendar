@@ -23,11 +23,10 @@ jobs:
         with:
           useLockFile: false # Better for building libraries
 
-      - name: Generate .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
-      - name: Release version
+      - name: Bump version, add tag, add Github Release
         run: yarn release --ci
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
