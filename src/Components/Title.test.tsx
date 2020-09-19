@@ -24,6 +24,18 @@ test('Title renders date string in default format', () => {
   expect(title.text).toHaveTextContent('September 2020');
 });
 
+describe('Title format switches depending on the active view', () => {
+  test('Month view format', () => {
+    const title = new TitlePage({ date: '2020-09-18', activeView: VIEW.MONTH });
+    expect(title.text).toHaveTextContent('September 2020');
+  });
+
+  test('Year view format', () => {
+    const title = new TitlePage({ date: '2020-09-18', activeView: VIEW.YEAR });
+    expect(title.text).toHaveTextContent('2020');
+  });
+});
+
 test('Title receives locale context', () => {
   const title = new TitlePage({ date: '2020-09-18', locale: testLocale });
   expect(title.text).toHaveTextContent('I 2020');

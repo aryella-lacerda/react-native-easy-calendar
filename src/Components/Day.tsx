@@ -35,9 +35,7 @@ const Day: React.FC<Props> = ({
 }) => {
   const theme = React.useContext<Theme>(ThemeContext);
   const _onPress = () => {
-    if (date) {
-      onPress(date);
-    }
+    onPress(date);
   };
 
   if (isExtraDay) {
@@ -45,7 +43,7 @@ const Day: React.FC<Props> = ({
       <TouchableOpacity
         disabled
         testID={'extra-day-container'}
-        accessibilityLabel={date ? `${dayjs(date).format('LL')}` : ''}
+        accessibilityLabel={`${dayjs(date).format('LL')}`}
         accessibilityState={{ disabled: true, selected: false }}
         onPress={_onPress}
         style={[theme.normalDayContainer, theme.extraDayContainer]}>
@@ -59,7 +57,7 @@ const Day: React.FC<Props> = ({
   return (
     <TouchableOpacity
       testID={'day-container'}
-      accessibilityLabel={date ? `${dayjs(date).format('LL')}` : ''}
+      accessibilityLabel={`${dayjs(date).format('LL')}`}
       accessibilityState={{
         disabled: !!(isDisabled || isExtraDay),
         selected: isSelected,
@@ -74,7 +72,6 @@ const Day: React.FC<Props> = ({
         isEndOfWeek && theme.endOfWeekDayContainer,
         isStartOfMonth && theme.startOfMonthDayContainer,
         isEndOfMonth && theme.endOfMonthDayContainer,
-        isExtraDay && theme.extraDayContainer,
       ]}>
       <Text
         testID={'day-text'}
@@ -86,7 +83,6 @@ const Day: React.FC<Props> = ({
           isEndOfWeek && theme.endOfWeekDayText,
           isStartOfMonth && theme.startOfMonthDayText,
           isEndOfMonth && theme.endOfMonthDayText,
-          isExtraDay && theme.extraDayText,
         ]}>
         {dayjs(date).date()}
       </Text>

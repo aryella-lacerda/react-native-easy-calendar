@@ -19,7 +19,7 @@ test('Month renders without error', () => {
 test('Component calls onPress callback when clicked', () => {
   const onPress = jest.fn();
   const day = new DayPage({ onPress });
-  fireEvent.press(day.container);
+  day.container && fireEvent.press(day.container);
   expect(onPress).toHaveBeenCalledTimes(1);
 });
 
@@ -35,6 +35,26 @@ describe('Renders the correct string for date', () => {
     const date = '18-09-2020';
     const day = new DayPage({ date });
     expect(day.text).toHaveTextContent('');
+  });
+});
+
+describe('Extra dates', () => {
+  test('Hide extra dates', () => {
+    const date = '2020-01-10';
+    const day = new DayPage({ date, isExtraDay: true, showExtraDates: false });
+    expect(day.container).toBeFalsy();
+    expect(day.text).toBeFalsy();
+    expect(day.extraDayContainer).toBeTruthy();
+    expect(day.extraDayText).toHaveTextContent('');
+  });
+
+  test('Show extra dates', () => {
+    const date = '2020-01-10';
+    const day = new DayPage({ date, isExtraDay: true, showExtraDates: true });
+    expect(day.container).toBeFalsy();
+    expect(day.text).toBeFalsy();
+    expect(day.extraDayContainer).toBeTruthy();
+    expect(day.extraDayText).toHaveTextContent('10');
   });
 });
 
@@ -62,6 +82,7 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
     });
 
     test('Container applies disabled theme in disabled state', () => {
@@ -76,6 +97,7 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
     });
 
     test('Container applies selected theme in selected state', () => {
@@ -90,6 +112,7 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
     });
 
     test('Container applies start of week themes in start of week state', () => {
@@ -104,6 +127,7 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
     });
 
     test('Container applies end of week themes in end of week state', () => {
@@ -118,6 +142,7 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
     });
 
     test('Container applies start of month themes in start of month state', () => {
@@ -132,6 +157,7 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfMonthDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
     });
 
     test('Container applies end of month themes in end of month state', () => {
@@ -146,6 +172,24 @@ describe('Theme context', () => {
       expect(day.container).not.toHaveStyle(theme.startOfWeekDayContainer);
       expect(day.container).not.toHaveStyle(theme.startOfMonthDayContainer);
       expect(day.container).not.toHaveStyle(theme.endOfWeekDayContainer);
+      expect(day.container).not.toHaveStyle(theme.extraDayContainer);
+    });
+
+    test('Container applies extra day themes in extra day state', () => {
+      const day = new DayPage({ isExtraDay: true, showExtraDates: true });
+
+      expect(day.container).toBeFalsy();
+      expect(day.extraDayContainer).toHaveStyle([
+        theme.normalDayContainer,
+        theme.extraDayContainer,
+      ]);
+
+      expect(day.extraDayContainer).not.toHaveStyle(theme.selectedDayContainer);
+      expect(day.extraDayContainer).not.toHaveStyle(theme.disabledDayContainer);
+      expect(day.extraDayContainer).not.toHaveStyle(theme.startOfWeekDayContainer);
+      expect(day.extraDayContainer).not.toHaveStyle(theme.startOfMonthDayContainer);
+      expect(day.extraDayContainer).not.toHaveStyle(theme.endOfWeekDayContainer);
+      expect(day.extraDayContainer).not.toHaveStyle(theme.endOfMonthDayContainer);
     });
   });
 
@@ -160,6 +204,7 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
     });
 
     test('Text applies disabled theme in disabled state', () => {
@@ -171,6 +216,7 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
     });
 
     test('Text applies selected theme in selected state', () => {
@@ -182,6 +228,7 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
     });
 
     test('Text applies start of week themes in start of week state', () => {
@@ -193,6 +240,7 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
     });
 
     test('Text applies end of week themes in end of week state', () => {
@@ -204,6 +252,7 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
     });
 
     test('Text applies start of month themes in start of month state', () => {
@@ -215,6 +264,7 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.endOfMonthDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
     });
 
     test('Text applies end of month themes in end of month state', () => {
@@ -226,27 +276,46 @@ describe('Theme context', () => {
       expect(day.text).not.toHaveStyle(theme.startOfWeekDayText);
       expect(day.text).not.toHaveStyle(theme.startOfMonthDayText);
       expect(day.text).not.toHaveStyle(theme.endOfWeekDayText);
+      expect(day.text).not.toHaveStyle(theme.extraDayText);
+    });
+
+    test('Text applies extra day themes in extra day state', () => {
+      const day = new DayPage({ isExtraDay: true, showExtraDates: true });
+
+      expect(day.text).toBeFalsy();
+      expect(day.extraDayText).toHaveStyle([theme.normalDayText, theme.extraDayText]);
+
+      expect(day.extraDayText).not.toHaveStyle(theme.selectedDayText);
+      expect(day.extraDayText).not.toHaveStyle(theme.disabledDayText);
+      expect(day.extraDayText).not.toHaveStyle(theme.startOfWeekDayText);
+      expect(day.extraDayText).not.toHaveStyle(theme.startOfMonthDayText);
+      expect(day.extraDayText).not.toHaveStyle(theme.endOfWeekDayText);
+      expect(day.extraDayText).not.toHaveStyle(theme.endOfMonthDayText);
     });
   });
 });
 
 class DayPage {
-  container: ReactTestInstance;
-  text: ReactTestInstance;
+  container: ReactTestInstance | null;
+  extraDayContainer: ReactTestInstance | null;
+  text: ReactTestInstance | null;
+  extraDayText: ReactTestInstance | null;
 
   constructor({
     date = '2020-01-01',
     onPress = () => {},
     ...booleanProps
   }: Partial<Props>) {
-    const { getByTestId } = render(
+    const { queryByTestId } = render(
       <ThemeContext.Provider value={theme}>
         <Day {...booleanProps} date={date} onPress={onPress} />
       </ThemeContext.Provider>
     );
 
-    this.container = getByTestId('day-container');
-    this.text = getByTestId('day-text');
+    this.container = queryByTestId('day-container');
+    this.extraDayContainer = queryByTestId('extra-day-container');
+    this.text = queryByTestId('day-text');
+    this.extraDayText = queryByTestId('extra-day-text');
   }
 }
 
@@ -279,6 +348,10 @@ const containerStyles = {
     marginTop: 1,
     alignItems: 'center' as const,
   },
+  extraDayContainer: {
+    marginTop: 10,
+    borderRadius: 100,
+  },
 };
 
 const textStyle = {
@@ -309,6 +382,10 @@ const textStyle = {
   endOfMonthDayText: {
     marginTop: 1,
     alignItems: 'center' as const,
+  },
+  extraDayText: {
+    marginTop: 10,
+    color: 'purple',
   },
 };
 

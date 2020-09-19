@@ -33,8 +33,18 @@ test('Component passes onPressMonth callback to Month children', () => {
 });
 
 describe('Generates correct set of selected months', () => {
-  test('None selected', () => {
+  test('None selected, undefined', () => {
     const months = new MonthsPage({ dateProperties: {} });
+    const selectedMonths = months.monthArray.filter(getSelectedMonths);
+    expect(selectedMonths.length).toBe(0);
+  });
+
+  test('None selected, false', () => {
+    const months = new MonthsPage({
+      dateProperties: {
+        '2020-04-01': { isSelected: false },
+      },
+    });
     const selectedMonths = months.monthArray.filter(getSelectedMonths);
     expect(selectedMonths.length).toBe(0);
   });

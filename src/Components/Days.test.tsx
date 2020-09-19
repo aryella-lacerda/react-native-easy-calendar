@@ -27,7 +27,7 @@ test('Days renders without error', () => {
   expect(days.component).toBeTruthy();
 });
 
-describe('Renders the correct number of active days', () => {
+describe('Renders the correct number of normal days', () => {
   test('works for months with 31 days', () => {
     // January 2020 had 31 days
     const days = new DaysPage({ visibleDate: dayjs('2020-01-01') });
@@ -47,24 +47,25 @@ describe('Renders the correct number of active days', () => {
   });
 
   test('works for non-leap-year Febuary', () => {
-    // Febuary 2019 had 28 days
+    // February 2019 had 28 days
     const days = new DaysPage({ visibleDate: dayjs('2019-02-01') });
     expect(days.normalDayArray.length).toBe(28);
   });
 });
 
-// describe('Renders empty `extra` components if showExtraDays: false', () => {
-//   test('', () => {
-//     const days = new DaysPage({
-//       visibleDate: dayjs('2020-01-01'),
-//       showExtraDates: false,
-//     });
-//     const disabledDays = days.extraDayArray.filter(getDisabledDays);
-//     for (const day in disabledDays) {
-//       expect(day).toBe(null);
-//     }
-//   });
-// });
+describe('Renders correct number of extra days', () => {
+  test('works with months that need an extra row', () => {
+    // January 2020 needs a final padding row
+    const days = new DaysPage({ visibleDate: dayjs('2020-01-01') });
+    expect(days.extraDayArray.length).toBe(11);
+  });
+
+  test('works with months that do not need an extra row', () => {
+    // May 2020 does not need a final padding row
+    const days = new DaysPage({ visibleDate: dayjs('2020-05-01') });
+    expect(days.extraDayArray.length).toBe(11);
+  });
+});
 
 test('Component passes onPressDay callback to Day children', () => {
   const onPressDay = jest.fn();
@@ -127,6 +128,32 @@ describe('Disables the correct days', () => {
     expect(disabledDayLabels[1]).toBe('January 15, 2020');
     expect(disabledDayLabels[2]).toBe('January 31, 2020');
   });
+
+  test('Disables dates before min date', () => {
+    const visibleDate = dayjs('2020-01-01');
+    const minDate = '2020-01-04'; // 1-3 should be disabled
+    const days = new DaysPage({ visibleDate, minDate });
+    const disabledDays = days.normalDayArray.filter(getDisabledDays);
+    const disabledDayLabels = disabledDays.map(getAccessibilityLabel);
+
+    expect(disabledDays.length).toBe(3);
+    expect(disabledDayLabels[0]).toBe('January 1, 2020');
+    expect(disabledDayLabels[1]).toBe('January 2, 2020');
+    expect(disabledDayLabels[2]).toBe('January 3, 2020');
+  });
+
+  test('Disables dates after max date', () => {
+    const visibleDate = dayjs('2020-01-01');
+    const maxDate = '2020-01-28'; // 29-31 should be disabled
+    const days = new DaysPage({ visibleDate, maxDate });
+    const disabledDays = days.normalDayArray.filter(getDisabledDays);
+    const disabledDayLabels = disabledDays.map(getAccessibilityLabel);
+
+    expect(disabledDays.length).toBe(3);
+    expect(disabledDayLabels[0]).toBe('January 29, 2020');
+    expect(disabledDayLabels[1]).toBe('January 30, 2020');
+    expect(disabledDayLabels[2]).toBe('January 31, 2020');
+  });
 });
 
 describe('Theme context', () => {
@@ -150,12 +177,16 @@ class DaysPage {
     onPressDay = () => {},
     dateProperties = {},
     theme = DefaultTheme,
+    minDate,
+    maxDate,
     DayComponent,
   }: Partial<Props> & { theme?: Theme }) {
     const { getByTestId, queryAllByTestId } = render(
       <ThemeContext.Provider value={theme}>
         <Days
           {...{
+            minDate,
+            maxDate,
             visibleDate,
             showExtraDates,
             onPressDay,
