@@ -10,15 +10,35 @@ jobs:
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Install lib dependencies
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false # Better for building libraries
 
-      - name: Release version
-        run: yarn release --ci
+      - name: Set Git credentials
+        run: |
+          git config user.email "aryella.lacerda@gmail.com"
+          git config user.name "Aryella"
+
+      - name: Bump version
+        uses: TheRealWaldo/release-it@v0.2.1
+        with:
+          github-username: aryella.lacerda
+          git-user-name: Aryella Lacerda
+          git-user-email: aryella.lacerda@gmail.com
+          create-branch: release
+          rebase-onto: master
+          json-opts: '{"dry-run": true}'
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
