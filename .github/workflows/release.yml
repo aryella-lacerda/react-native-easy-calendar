@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN_ADMIN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
@@ -28,8 +28,15 @@ jobs:
           git config user.email "aryella.lacerda@gmail.com"
           git config user.name "Aryella"
 
-      - name: Bump version, add tag, add Github Release
-        run: yarn release --ci
+      - name: Bump version
+        uses: TheRealWaldo/release-it@v0.2.1
+        with:
+          github-username: aryella.lacerda
+          git-user-name: Aryella Lacerda
+          git-user-email: aryella.lacerda@gmail.com
+          create-branch: release
+          rebase-onto: master
+          json-opts: '{"dry-run": true}'
 
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v1
