@@ -60,17 +60,10 @@ describe('Theme context', () => {
 describe('Automatic image rotation', () => {
   const rotation = { transform: [{ rotate: '180deg' }] };
 
-  /*
-   *  28/07/20:
-   *  @testing-library/jest-native currently has a limitation where .toHaveStyles() doesn't support transform styles.
-   *  Fortunatly, there is a PR open to correct this behavior: https://github.com/testing-library/jest-native/pull/26
-   *  The following test should work when the PR gets merged and released.
-   */
-
-  // test('Rotate "right" arrow towards the right', () => {
-  //   const arrow = new ArrowPage({ direction: 'right' });
-  //   expect(arrow.image).toHaveStyle(rotation);
-  // });
+  test('Rotate "right" arrow towards the right', () => {
+    const arrow = new ArrowPage({ direction: 'right' });
+    expect(arrow.image).toHaveStyle(rotation);
+  });
 
   test('Do not rotate "left" arrows', () => {
     const arrow = new ArrowPage({ direction: 'left' });
