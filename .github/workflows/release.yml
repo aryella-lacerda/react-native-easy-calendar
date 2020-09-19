@@ -36,9 +36,8 @@ jobs:
           git-user-email: aryella.lacerda@gmail.com
           create-branch: release
           rebase-onto: master
-          json-opts: '{"dry-run": true}'
 
-      - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish to NPM
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
