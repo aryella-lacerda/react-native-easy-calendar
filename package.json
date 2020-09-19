@@ -50,7 +50,7 @@
     "@react-native-community/bob": "^0.16.2",
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^1.1.4",
-    "@testing-library/jest-native": "^3.3.0",
+    "@testing-library/jest-native": "^3.4.2",
     "@testing-library/react-hooks": "^3.4.1",
     "@testing-library/react-native": "^7.0.2",
     "@types/detox": "^16.4.1",
