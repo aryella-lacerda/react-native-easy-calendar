@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { DateSelectionCalendar, DarkTheme } from 'react-native-easy-calendar';
-import Wrapper from '../Wrapper';
+import Wrapper from '../../Wrapper';
 
 const DarkDimensionsCalendar = () => {
   const [selectedDate, setSelectedDate] = React.useState('2020-02-01');

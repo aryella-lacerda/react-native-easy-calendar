@@ -1,6 +1,6 @@
 import React from 'react';
 import { DateSelectionCalendar } from 'react-native-easy-calendar';
-import Wrapper from '../Wrapper';
+import Wrapper from '../../Wrapper';
 
 const ForbidYearView = () => {
   const [selectedDate, setSelectedDate] = React.useState('2020-01-01');

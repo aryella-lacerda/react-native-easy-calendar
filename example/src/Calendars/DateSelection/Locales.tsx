@@ -1,7 +1,7 @@
 import React from 'react';
 import frenchLocale from 'dayjs/locale/fr';
 import spanishLocale from 'dayjs/locale/es';
-import Wrappper from '../Wrapper';
+import Wrappper from '../../Wrapper';
 
 import { DateSelectionCalendar, DarkTheme } from 'react-native-easy-calendar';
 

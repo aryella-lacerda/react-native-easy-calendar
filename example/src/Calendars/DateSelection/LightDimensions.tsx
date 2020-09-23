@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { DateSelectionCalendar } from 'react-native-easy-calendar';
-import Wrapper from '../Wrapper';
+import Wrapper from '../../Wrapper';
 
 const LightDimensionsCalendar = () => {
   const [selectedDate, setSelectedDate] = React.useState('2020-02-01');

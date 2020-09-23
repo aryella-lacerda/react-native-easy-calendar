@@ -1,39 +1,34 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import Basic from './Calendars/Basic';
-import Locales from './Calendars/Locales';
-import DisabledDates from './Calendars/DisabledDates';
-import MinMaxDates from './Calendars/MinMaxDates';
-import ForbidYearView from './Calendars/ForbidYearView';
-import CustomComponents from './Calendars/CustomComponents';
-import DarkDimensions from './Calendars/DarkDimensions';
-import LightDimensions from './Calendars/LightDimensions';
+import Switch from './Switch';
+import DateSelectionExamples from './DateSelectionExamples';
+import MultiDateSelectionExamples from './MultiDateSelectionExamples';
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <View testID={'App'}>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView testID={'scroll-view'}>
-          <Basic />
-          <Locales />
-          <DisabledDates />
-          <MinMaxDates />
-          <ForbidYearView />
-          <DarkDimensions />
-          <LightDimensions />
-          <CustomComponents />
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Switch" component={Switch} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="DateSelectionExamples"
+          component={DateSelectionExamples}
+          options={{ title: 'Date Selection Examples', headerBackTitleVisible: false }}
+        />
+        <Stack.Screen
+          name="MultiDateSelectionExamples"
+          component={MultiDateSelectionExamples}
+          options={{
+            title: 'Multi Date Selection Examples',
+            headerBackTitleVisible: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  safeArea: {
-    height: '100%',
-  },
-});
 
 export default App;
