@@ -105,4 +105,4 @@ const Days: React.FC<Props> = ({
   );
 };
 
-export default React.memo(Days);
+export default Days;

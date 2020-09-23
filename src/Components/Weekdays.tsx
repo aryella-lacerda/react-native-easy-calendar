@@ -26,4 +26,4 @@ const Weekdays: React.FC<Props> = ({ days }) => {
   );
 };
 
-export default Weekdays;
+export default React.memo(Weekdays);
