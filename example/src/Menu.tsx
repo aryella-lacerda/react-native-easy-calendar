@@ -14,11 +14,12 @@ interface Props {
   info: string;
   onPress: () => void;
   image: any;
+  testID: string;
 }
 
-const Card: React.FC<Props> = ({ title, info, onPress, image }) => {
+const Card: React.FC<Props> = ({ title, info, onPress, image, testID }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.card}>
+    <TouchableOpacity testID={testID} onPress={onPress} style={styles.card}>
       <Image source={image} accessibilityIgnoresInvertColors />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.info}>{info}</Text>
@@ -26,28 +27,30 @@ const Card: React.FC<Props> = ({ title, info, onPress, image }) => {
   );
 };
 
-interface SwitchProps {
+interface MenuProps {
   navigation: any;
 }
 
-const Switch: React.FC<SwitchProps> = ({ navigation }) => {
+const Menu: React.FC<MenuProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Card
+          testID={'single-date-selection-calendar'}
           image={Images.dateSelection.single}
           onPress={() => navigation.navigate('DateSelectionExamples')}
           title={'Single Date Selection Calendar'}
           info={
-            'The date selection calendar allows the selection of only one date. Click here to see usage examples.'
+            'This date selection calendar allows the selection of only one date. Click here to see usage examples.'
           }
         />
         <Card
+          testID={'multi-date-selection-calendar'}
           image={Images.dateSelection.multi}
           onPress={() => navigation.navigate('MultiDateSelectionExamples')}
           title={'Multi Date Selection Calendar'}
           info={
-            'The date selection calendar allows the selection of multiple dates. Click here to see usage examples.'
+            'This date selection calendar allows the selection of multiple dates. Click here to see usage examples.'
           }
         />
       </View>
@@ -55,7 +58,7 @@ const Switch: React.FC<SwitchProps> = ({ navigation }) => {
   );
 };
 
-export default Switch;
+export default Menu;
 
 const styles = StyleSheet.create({
   container: {

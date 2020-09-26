@@ -11,7 +11,7 @@ import {
   DayComponentType,
   LightTheme,
 } from 'react-native-easy-calendar';
-import Wrapper from '../../Wrapper';
+import Wrapper from './Wrapper';
 
 const { width } = Dimensions.get('screen');
 

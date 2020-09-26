@@ -2,9 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Switch from './Switch';
-import DateSelectionExamples from './DateSelectionExamples';
-import MultiDateSelectionExamples from './MultiDateSelectionExamples';
+import Menu from './Menu';
+import SingleDateSelection from './Calendars/SingleDateSelection';
+import MultiDateSelection from './Calendars/MultiDateSelection';
 
 const Stack = createStackNavigator();
 
@@ -12,15 +12,15 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Switch" component={Switch} options={{ headerShown: false }} />
+        <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
         <Stack.Screen
           name="DateSelectionExamples"
-          component={DateSelectionExamples}
+          component={SingleDateSelection}
           options={{ title: 'Date Selection Examples', headerBackTitleVisible: false }}
         />
         <Stack.Screen
           name="MultiDateSelectionExamples"
-          component={MultiDateSelectionExamples}
+          component={MultiDateSelection}
           options={{
             title: 'Multi Date Selection Examples',
             headerBackTitleVisible: false,
