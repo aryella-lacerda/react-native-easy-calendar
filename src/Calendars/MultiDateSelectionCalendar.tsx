@@ -60,7 +60,7 @@ const MultiDateSelectionCalendar: React.FC<Props> = ({
     return newSelectedDates;
   };
 
-  const onPressDate = React.useCallback(
+  const onPressDay = React.useCallback(
     (date: string) => {
       if (selDatesRef.current.includes(date)) {
         onSelectDates(remove(date));
@@ -73,7 +73,7 @@ const MultiDateSelectionCalendar: React.FC<Props> = ({
 
   return (
     <BaseCalendarWrappedInProviders
-      onPressDay={onPressDate}
+      onPressDay={onPressDay}
       allowYearView={allowYearView}
       dateProperties={dateProperties}
       {...others}
