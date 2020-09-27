@@ -39,4 +39,4 @@ jobs:
           npm config set scripts-prepend-node-path auto
 
       - name: Release Version
-        run: yarn release --npm.skipChecks --git.pushArgs=--follow-tags --git.pushArgs=--force
+        run: yarn release --ci --npm.skipChecks --git.pushArgs=--follow-tags --git.pushArgs=--force
