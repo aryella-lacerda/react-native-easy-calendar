@@ -1,11 +1,9 @@
-name: Commit Linting
-
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  lintcommit:
+  lint-commit:
     name: Lint commit messages
     runs-on: ubuntu-latest
 
@@ -17,6 +15,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Install app dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./example
 
       - name: Install lib dependencies
         uses: bahmutov/npm-install@v1
