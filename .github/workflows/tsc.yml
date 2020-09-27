@@ -1,10 +1,11 @@
+name: Typecheck
+
 on:
   pull_request:
     branches: [master]
 
 jobs:
   type-check:
-    name: Type checking code
     runs-on: ubuntu-latest
 
     steps:
