@@ -40,4 +40,4 @@ jobs:
           npm set registry https://registry.npmjs.org/
 
       - name: Release Version
-        run: yarn release --ci --npm.skipChecks --git.pushArgs=--follow-tags --git.pushArgs=--force
+        run: DEBUG=release-it:* yarn release --ci --npm.skipChecks --git.pushArgs=--follow-tags --git.pushArgs=--force
