@@ -1,12 +1,11 @@
-name: Linting
+name: Lint code
 
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  lintcode:
-    name: Lint code
+  lint-code:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,8 +14,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - name: Install app dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./example
 
       - name: Install lib dependencies
         uses: bahmutov/npm-install@v1

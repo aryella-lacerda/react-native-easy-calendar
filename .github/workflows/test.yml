@@ -1,28 +1,20 @@
-name: Unit | Component | Integration | Hook Testing
+name: Unit test
 
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  test:
+  unit-test:
     runs-on: ubuntu-latest
-
-    # A matrix allows you to create multiple jobs by performing variable substitution in a single job definition.
-    # For example, you can use a matrix to create jobs for more than one supported version of a programming language, operating system, or tool.
-    # A matrix reuses the job's configuration and creates a job for each matrix you configure.
-    # strategy:
-    #   matrix:
-    #     node-version: [10.x, 12.x, 14.x]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Install app dependencies
+        uses: bahmutov/npm-install@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          working-directory: ./example
 
       - name: Install lib dependencies
         uses: bahmutov/npm-install@v1

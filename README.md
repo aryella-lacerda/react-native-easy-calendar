@@ -2,24 +2,37 @@
   <img src="docs/horizontal-logo.svg" width="450" alt="React Native Easy Calendar" />
 </div>
 
-<h3 align="center">
-  Customizable, easy-to-use, performant calendar components for React Native. 🗓📆
-</h3>
+<h4 align="center">
+  Customizable, easy-to-use, performant calendar components for React Native.
+</h4>
 
 </br>
 
 <div align="center">
-  <a href="https://codecov.io/gh/aryella-lacerda/react-native-easy-calendar">
+  <a href="https://www.npmjs.com/package/react-native-easy-calendar">
     <img src="https://img.shields.io/npm/v/react-native-easy-calendar">
-    <img src="https://packagephobia.com/badge?p=react-native-easy-calendar">
-    <img src="https://codecov.io/gh/aryella-lacerda/react-native-easy-calendar/branch/master/graph/badge.svg?token=NV10YLJAU8" />
-    <img src="https://github.com/aryella-lacerda/react-native-easy-calendar/workflows/CI/badge.svg" />
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" />
   </a>
+  <a href="https://packagephobia.com/result?p=react-native-easy-calendar">
+    <img src="https://packagephobia.com/badge?p=react-native-easy-calendar">
+  </a>
+  <a href="https://codecov.io/gh/aryella-lacerda/react-native-easy-calendar">
+    <img src="https://codecov.io/gh/aryella-lacerda/react-native-easy-calendar/branch/master/graph/badge.svg?token=NV10YLJAU8" />
+  </a>
+  <img src="https://github.com/aryella-lacerda/react-native-easy-calendar/workflows/CI/badge.svg" />
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" />
 </div>
 
 <div align="center">
   <i>Show your support: ⭐️ the repo!</i>
+</div>
+
+</br>
+
+<div align="center">
+
+[Single Date Selection](#single-date-selection-calendar) |
+[Multi Date Selection](#multi-date-selection-calendar)
+
 </div>
 
 </br>
@@ -33,11 +46,36 @@
   </kbd>
 </div>
 
-# Table of Contents
+## Features
+
+- 🎁 **Lean APIs**
+  <br/>
+  A different calendar for each use case, which makes for simpler, more contextual component APIs
+
+- 🎨 **Shareable Themes**
+  <br/>
+  Support for highly granular, shareable themes
+
+- 🗺 **i18n**
+  <br/>
+  Support for locales through [Dayjs](https://github.com/iamkun/dayjs), which offers 138 locales out of the box
+
+- 🎮 **Controlled Components**
+  <br/>
+  Controlled components elimate the need for most _onEvent()_ callbacks and allow you more power over date selection logic
+
+- ⭐️ **Typescript Support**
+  <br/>
+  Typescript support out of the box
+
+- 💡 **Sane Defaults**
+  <br/>
+  Calendars come with sane defaults and only allow component structure/behaviour to be altered by passing in custom components, not through behavior-altering props
+
+## Table of Contents
 
 [General](#react-native-easy-calendar)
 
-- [Concept](#concept)
 - [Roadmap](#roadmap)
 - [Compatibility](#compatibility)
 - [Try it out](#try-it-out)
@@ -51,38 +89,33 @@
 
 [Calendars](#calendars)
 
-- [Date Selection Calendar](#date-selection-calendar)
+- [Single Date Selection Calendar](#single-date-selection-calendar)
+- [Multi Date Selection Calendar](#multi-date-selection-calendar)
 
 [Contributing](#contributing)
 
 - [License](#license)
 
-## Concept
-
-The community's been well-served by Wix's [react-native-calendars](https://github.com/wix/react-native-calendars) for years and this package aims to provide a leaner but equally capable alterative by:
-
-- splitting up calendar functionalities into thin wrapper components with leaner, more contextual APIs.
-- supporting a highly granular, shareable version of themes.
-- supporting locales through [Dayjs](https://github.com/iamkun/dayjs), which offers 138 locales out of the box (at last count), but won't include any of them in your bundle unless you use it.
-- making the calendars controlled components, which elimates the need for most _onEvent()_ callbacks.
-- providing sane defaults and ONLY allowing component structure/behaviour to be altered by passing in custom components and NOT through behavior-altering props. This single-source-of-truth leads to less confusion and cleans up the API.
-- offering Typescript support out of the box.
-
 ## Roadmap
 
-Currently, we support only a single-date selection calendar. In the next couple of releases:
+In the next couple of releases:
 
-- multi-date selection support
+- code coverage improvements ✅ (v0.1.1)
+- add E2E tests to CI pipeline ✅ (v0.1.2)
+- multi-date selection support ✅ (v0.2.0)
 - new period selection calendar
 - accessibility improvements
-- code coverage improvements
-- add E2E tests to CI pipeline
+- translate README to Brazilian Portuguese
 
 ## Compatibility
 
 We're compatible with RN 0.59+.
 
 ## Try it out
+
+<div align="center">
+  <img src="docs/example-app.png" alt="React Native Easy Calendar - Example App" width="350"/>
+</div>
 
 To check out the package, run the example app by executing these steps:
 
@@ -109,10 +142,11 @@ $ yarn add react-native-easy-calendar dayjs
     <img src="docs/dark-theme1.gif" width="400">
   </kbd>
 </div>
+<center>
+  Locale, themes, and custom components will be treated the same way in all the calendars.
+</center>
 
 <br/>
-
-Locale, themes, and custom components will be treated the same way in all the calendars. Each calendar might have slightly different props, however, in order to make them as contextual as possible.
 
 ## Themes
 
@@ -531,7 +565,7 @@ The `date` prop is `null` only when `isExtraDay === true && showExtraDates === f
 ```jsx
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { DateSelectionCalendar, DayComponentType } from 'react-native-easy-calendar';
+import { SingleDateSelectionCalendar, DayComponentType } from 'react-native-easy-calendar';
 
 const CustomDay: DayComponentType = React.memo(({ date, onPress, isDisabled }) => {
   const _onPress = React.useCallback(() => onPress(date), [date, onPress]);
@@ -547,7 +581,7 @@ const CustomComponents = () => {
   const [selectedDate, setSelectedDate] = React.useState('2020-07-05');
 
   return (
-    <DateSelectionCalendar
+    <SingleDateSelectionCalendar
       onSelectDate={setSelectedDate}
       selectedDate={selectedDate}
       DayComponent={CustomDay}
@@ -563,16 +597,27 @@ export default CustomComponents;
 
 # Calendars
 
-## Date Selection Calendar
+## Single Date Selection Calendar
 
-For now, this calendar supports only the selection of a single date. Multi-date selection upcoming.
+<br/>
+
+<div align="center">
+  <kbd>
+    <img src="docs/light-theme.gif" width="300" alt="Single date selection" />
+  </kbd>
+</div>
+
+<br/>
+
+This calendar supports only the selection of a single date. It has also been aliased as `DateSelectionCalendar`, if you prefer. You may pass a date string in `YYYY-MM-DD` format as the initial value of `selectedDate`, or an empty string to indicate that no date has been initially selected. Clicking on a date selects it, and this date can only be deselected by selecting another date.
 
 ```jsx
 import { DateSelectionCalendar, DefaultTheme } from 'react-native-easy-calendar'
 import frenchLocale from 'dayjs/locale/fr';
 
 const Example = () => {
-  const [selectedDate, setSelectedDate] = React.useState('2020-02-01');
+  const [selectedDate, setSelectedDate] = React.useState<string>('2020-02-01');
+  const [selectedDate, setSelectedDate] = React.useState<string>(''); // Also possible
 
   return (
     <DateSelectionCalendar
@@ -581,14 +626,64 @@ const Example = () => {
       initVisibleDate={'2020-02-10'} // defaults to selectedDate
       minDate={'2020-01-10'};
       maxDate={'2020-04-10'};
-      allowYearView={false}; // defaults to true
-      showExtraDates={true}; // defaults to false
+      allowYearView={true};
+      showExtraDates={false};
       testID={'my-calendar-component'};
-      locale={frenchLocale}; // defaults to en-US
+      locale={frenchLocale}; // defaults to en-CA
       theme={DefaultTheme};
       {/* The following props are required */}
       onSelectDate={setSelectedDate}
       selectedDate={selectedDate}
+    />
+  );
+};
+```
+
+## Multi Date Selection Calendar
+
+<br/>
+
+<div align="center">
+  <kbd>
+    <img src="docs/multi-selection.gif" width="300" alt="Multi date selection" />
+  </kbd>
+</div>
+
+<br/>
+
+This calendar supports the selection of multiple dates. Notice that, unlike the `SingleDateSelectionCalendar`, this calendar works with _arrays_ of strings. Clicking on a date selects it, clicking it again _deselects_ it. You can provide an empty array as the initial value of `selectedDates`, or provide an array already populated with one or more dates. The calendar is a controlled component, so you have the power to limit the number of dates that can be selected in your `onSelectDates` callback.
+
+```jsx
+import { MultiDateSelectionCalendar, DefaultTheme } from 'react-native-easy-calendar'
+import frenchLocale from 'dayjs/locale/fr';
+
+const Example = () => {
+  const [selectedDates, setSelectedDates] = React.useState<string[]>([]);
+  const [selectedDates, setSelectedDates] = React.useState<string[]>(['2020-01-01']); // Also possible
+
+
+  const setMaxNumberOfSelectedDates = React.useCallback((_selectedDates: string[]) => {
+    const MAX_DATES = 3;
+    if (_selectedDates.length <= MAX_DATES) {
+      setSelectedDates(_selectedDates)
+    }
+  })
+
+  return (
+    <MultiDateSelectionCalendar
+      {/* The following props are optional */}
+      disabledDates={['2020-01-01', '2020-03-04']}
+      initVisibleDate={'2020-02-10'} // defaults to current date
+      minDate={'2020-01-10'};
+      maxDate={'2020-04-10'};
+      allowYearView={true};
+      showExtraDates={false};
+      testID={'my-calendar-component'};
+      locale={frenchLocale}; // defaults to en-CA
+      theme={DefaultTheme};
+      {/* The following props are required */}
+      onSelectDates={setMaxNumberOfSelectedDates}
+      selectedDates={selectedDates}
     />
   );
 };

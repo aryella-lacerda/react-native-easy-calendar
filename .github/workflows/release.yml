@@ -1,4 +1,4 @@
-name: Release Version
+name: Release
 
 on:
   push:
@@ -17,6 +17,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Install app dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./example
 
       - name: Install lib dependencies
         uses: bahmutov/npm-install@v1

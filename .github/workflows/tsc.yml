@@ -1,12 +1,11 @@
-name: Typechecking
+name: Typecheck
 
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  typecheck:
-    name: Type checking code
+  type-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,8 +14,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - name: Install app dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./example
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1

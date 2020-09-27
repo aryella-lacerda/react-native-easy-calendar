@@ -83,6 +83,8 @@ const BaseCalendar: React.FC<Props> = ({
     [locale, visibleDate]
   );
 
+  const weekdays = React.useMemo(() => locale.weekdaysShort ?? [''], [locale]);
+
   const { month, year } = useSurroundingTimeUnits(visibleDate);
 
   const verifyUnitIsPastMaxDate = useCallback(
@@ -196,7 +198,7 @@ const BaseCalendar: React.FC<Props> = ({
       </View>
       {activeView === VIEW.MONTH ? (
         <>
-          <Weekdays days={localeAwareVisibleDate.localeData().weekdaysShort()} />
+          <Weekdays days={weekdays} />
           <Days
             DayComponent={DayComponent}
             visibleDate={localeAwareVisibleDate}

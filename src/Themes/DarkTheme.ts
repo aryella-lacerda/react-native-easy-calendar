@@ -42,6 +42,10 @@ const DarkTheme: Theme = {
     color: dark.disabled,
     fontWeight: '300',
   },
+  disabledDayText: {
+    color: dark.disabled,
+    fontWeight: '300',
+  },
   normalArrowImage: {
     tintColor: dark.primary,
   },

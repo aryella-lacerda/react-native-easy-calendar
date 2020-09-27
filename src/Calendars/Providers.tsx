@@ -1,9 +1,10 @@
 import React from 'react';
+
 import { ThemeContext, LocaleContext } from '../Contexts';
 import { DefaultTheme } from '../Themes';
 import { DefaultLocale } from '../Locales';
-
 import type { Theme, Locale } from '../Entities';
+
 import BaseCalendar, { Props as BaseCalendarProps } from './BaseCalendar';
 
 interface ProviderProps {
@@ -23,4 +24,4 @@ const Providers: React.FC<Props> = ({ theme, locale, ...otherProps }) => {
   );
 };
 
-export default Providers;
+export default React.memo(Providers);

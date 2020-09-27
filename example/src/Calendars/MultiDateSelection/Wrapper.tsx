@@ -1,13 +1,12 @@
 import React from 'react';
-import dayjs from 'dayjs';
-import Colors from '../../src/Themes/Colors';
+import Colors from '../../../../src/Themes/Colors';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Props {
   title: string;
   children: React.ReactNode;
   color: 'light' | 'dark';
-  selectedDate?: string;
+  selectedDates?: string[];
   onPressActionButton?: () => void;
   actionButtonLabel?: string;
   actionButtonTestID?: string;
@@ -18,7 +17,7 @@ const Wrapper = ({
   children,
   title,
   color,
-  selectedDate,
+  selectedDates,
   testID,
   actionButtonTestID,
   onPressActionButton,
@@ -26,17 +25,13 @@ const Wrapper = ({
 }: Props) => {
   const styles = getStyles(color);
   return (
-    <View style={styles.container} testID={testID}>
+    <View
+      style={styles.container}
+      testID={testID}
+      accessibilityLabel={selectedDates?.join(', ')}>
       <Text testID={'wrapper-title'} style={styles.title}>
         {title}
       </Text>
-      {selectedDate && (
-        <View style={styles.selectedContainer}>
-          <Text style={styles.selectedText} testID={'selected-date'}>
-            {`${dayjs(selectedDate).format('MMMM D, YYYY')}`}
-          </Text>
-        </View>
-      )}
       {onPressActionButton && (
         <TouchableOpacity
           testID={actionButtonTestID}
@@ -61,21 +56,10 @@ const getStyles = (code: 'light' | 'dark') =>
       fontSize: 16,
       fontWeight: '600',
       paddingVertical: 12,
-      backgroundColor: Colors[code].base,
+      paddingHorizontal: 16,
       textAlign: 'center',
+      lineHeight: 27,
       color: Colors[code].baseText,
-    },
-    selectedContainer: {
-      backgroundColor: Colors[code].primary,
-      width: 200,
-      paddingVertical: 10,
-      borderRadius: 6,
-      marginVertical: 8,
-      alignSelf: 'center',
-    },
-    selectedText: {
-      color: Colors[code].primaryText,
-      textAlign: 'center',
     },
     button: {
       backgroundColor: Colors[code].primary,

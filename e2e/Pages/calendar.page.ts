@@ -37,9 +37,11 @@ class Calendar {
 
   // Weekdays labels used by locale calendars
   frenchSundayLabel: ReturnType<typeof element>;
+  englishSundayLabel: ReturnType<typeof element>;
   spanishSundayLabel: ReturnType<typeof element>;
-  frenchJanuaryLabel: ReturnType<typeof element>;
-  spanishJanuaryLabel: ReturnType<typeof element>;
+  frenchFebruaryLabel: ReturnType<typeof element>;
+  englishFebruaryLabel: ReturnType<typeof element>;
+  spanishFebruaryLabel: ReturnType<typeof element>;
 
   // Calendar elements
   container: ReturnType<typeof element>;
@@ -76,14 +78,20 @@ class Calendar {
     this.frenchSundayLabel = element(
       by.id('weekday').withAncestor(calendar).and(by.label('dim.'))
     );
+    this.englishSundayLabel = element(
+      by.id('weekday').withAncestor(calendar).and(by.label('Sun'))
+    );
     this.spanishSundayLabel = element(
       by.id('weekday').withAncestor(calendar).and(by.label('dom.'))
     );
-    this.frenchJanuaryLabel = element(
-      by.id('month-text').withAncestor(calendar).and(by.label('JANV.'))
+    this.frenchFebruaryLabel = element(
+      by.id('month-text').withAncestor(calendar).and(by.label('FÉVR.'))
     );
-    this.spanishJanuaryLabel = element(
-      by.id('month-text').withAncestor(calendar).and(by.label('ENE'))
+    this.englishFebruaryLabel = element(
+      by.id('month-text').withAncestor(calendar).and(by.label('FEB'))
+    );
+    this.spanishFebruaryLabel = element(
+      by.id('month-text').withAncestor(calendar).and(by.label('FEV'))
     );
 
     // Dates
