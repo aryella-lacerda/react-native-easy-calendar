@@ -34,7 +34,9 @@ jobs:
           git config user.name "Aryella"
 
       - name: Generate .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          npm config set scripts-prepend-node-path auto
 
       - name: Release Version
         run: yarn release --npm.skipChecks --git.pushArgs=--follow-tags --git.pushArgs=--force
