@@ -33,11 +33,13 @@ jobs:
           git config user.email "aryella.lacerda@gmail.com"
           git config user.name "Aryella"
 
-      - name: Generate .npmrc
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          npm config set scripts-prepend-node-path auto
-          npm set registry https://registry.npmjs.org/
+      - name: Prepend node path
+        run: npm config set scripts-prepend-node-path auto
 
-      - name: Release Version
-        run: DEBUG=release-it:* yarn release --ci --npm.skipChecks --git.pushArgs=--follow-tags --git.pushArgs=--force
+      - name: Generate version number, commit, tag, and Github release
+        run: yarn release --ci
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
