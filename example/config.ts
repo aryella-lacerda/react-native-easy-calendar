@@ -1,3 +1,3 @@
 export default {
-  runTestingScreen: true,
+  runTestingScreen: false,
 };
