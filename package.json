@@ -1,6 +1,6 @@
 {
   "name": "react-native-easy-calendar",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Customizable, easy-to-use, performant calendar components for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
