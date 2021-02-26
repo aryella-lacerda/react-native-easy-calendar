@@ -23,6 +23,28 @@ const DateSelectionCalendar: React.FC<Props> = ({
   allowYearView = true,
   ...others
 }) => {
+  if (!selectedDate) {
+    throw new Error(
+      'The `selectedDate` prop is required. Use an empty array if no dates should be selected.'
+    );
+  }
+
+  if (typeof selectedDate !== 'string') {
+    throw new Error(
+      'The `selectedDate` prop should be a date string in YYYY-MM-DD format.'
+    );
+  }
+
+  if (!onSelectDate) {
+    throw new Error('The `onSelectDate` prop is required.');
+  }
+
+  if (typeof onSelectDate !== 'function') {
+    throw new Error(
+      'The `onSelectDate` prop should be function that receives a date string as paramater.'
+    );
+  }
+
   const dateProperties = useMemo(() => {
     let disabledDateProperties: Record<string, DateProperties> = {};
     let selectedDateProperties: Record<string, DateProperties> = {};

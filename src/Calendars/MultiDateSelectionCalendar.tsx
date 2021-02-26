@@ -22,6 +22,28 @@ const MultiDateSelectionCalendar: React.FC<Props> = ({
   allowYearView = true,
   ...others
 }) => {
+  if (!selectedDates) {
+    throw new Error(
+      'The `selectedDates` prop is required. Use an empty array if no dates should be selected.'
+    );
+  }
+
+  if (typeof selectedDates !== 'object') {
+    throw new Error(
+      'The `selectedDates` prop should be an array of date strings in YYYY-MM-DD format.'
+    );
+  }
+
+  if (!onSelectDates) {
+    throw new Error('The `onSelectDates` prop is required.');
+  }
+
+  if (typeof onSelectDates !== 'function') {
+    throw new Error(
+      'The `onSelectDates` prop should be function that receives an array of date strings as paramater.'
+    );
+  }
+
   const selDatesRef = React.useRef<string[]>(selectedDates);
 
   const dateProperties = useMemo(() => {
